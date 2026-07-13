@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-[68px] sm:pt-[76px]">
+      <main className="pt-[80px] sm:pt-[88px]">
         {/* Page Hero Header */}
         <section
           className="relative py-20 lg:py-28 overflow-hidden"

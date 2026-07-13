@@ -9,7 +9,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.zybiov.com"),
-  title: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution — Sudan",
+  title: {
+    default: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution — Sudan",
+    template: "%s | Zybiov Multi-Activities Limited",
+  },
   description:
     "Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies. Delivering integrated healthcare solutions through the highest standards of quality, compliance, and operational excellence.",
   keywords: [
@@ -56,6 +59,15 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -72,8 +84,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/logo.png" type="image/png" />
-        <meta name="theme-color" content="#5B43D6" />
       </head>
       <body className="antialiased">
         {children}
