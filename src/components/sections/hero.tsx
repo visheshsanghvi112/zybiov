@@ -4,15 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion as motionFM } from "framer-motion";
 import { ArrowRight, ChevronDown, Check } from "lucide-react";
+import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 const trustCards = [
-  { text: "Quality Assured", delay: 0.6, position: "top-8 -left-4 lg:-left-12" },
-  { text: "Global Partnerships", delay: 0.8, position: "top-1/3 -right-4 lg:-right-10" },
-  { text: "Regulatory Compliance", delay: 1.0, position: "bottom-1/3 -left-6 lg:-left-16" },
-  { text: "Trusted Distribution", delay: 1.2, position: "bottom-8 -right-2 lg:-right-8" },
+  { key: "hero.cardQuality", delay: 0.6, position: "top-8 -left-4 lg:-left-12" },
+  { key: "hero.cardPartnerships", delay: 0.8, position: "top-1/3 -right-4 lg:-right-10" },
+  { key: "hero.cardCompliance", delay: 1.0, position: "bottom-1/3 -left-6 lg:-left-16" },
+  { key: "hero.cardTrusted", delay: 1.2, position: "bottom-8 -right-2 lg:-right-8" },
 ];
 
 export function HeroSection() {
+  const { language, t, dir } = useLanguage();
+
   return (
     <section
       id="home"
@@ -52,7 +56,7 @@ export function HeroSection() {
             >
               <span className="section-tag">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#5B43D6]" />
-                International Standards
+                {t("hero.badge")}
               </span>
             </motionFM.div>
 
@@ -62,11 +66,11 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
               className="text-[2.25rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem] font-bold leading-[1.1] tracking-tight mb-5 sm:mb-6"
-              style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}
+              style={{ color: "#1E244B", fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}
             >
-              Quality in Every Step{" "}
+              {t("hero.title1")}{" "}
               <br className="hidden sm:inline" />
-              Toward{" "}
+              {language === "en" ? "Toward " : ""}
               <span
                 style={{
                   background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
@@ -75,7 +79,7 @@ export function HeroSection() {
                   backgroundClip: "text",
                 }}
               >
-                Better Healthcare
+                {t("hero.title2")}
               </span>
             </motionFM.h1>
 
@@ -86,7 +90,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base sm:text-lg leading-relaxed mb-7 sm:mb-8 max-w-xl mx-auto lg:mx-0 text-[#5E647A]"
             >
-              Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies, committed to delivering integrated healthcare solutions through quality and operational excellence.
+              {t("hero.desc")}
             </motionFM.p>
 
             {/* CTA Buttons */}
@@ -97,11 +101,11 @@ export function HeroSection() {
               className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               <Link href="/expertise" className="btn-primary">
-                Our Expertise
-                <ArrowRight className="w-4 h-4" />
+                {t("hero.btnExpertise")}
+                <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
               </Link>
               <Link href="/about" className="btn-outline">
-                About Us
+                {t("hero.btnAbout")}
               </Link>
             </motionFM.div>
 
@@ -113,19 +117,19 @@ export function HeroSection() {
               className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-[#E4E7F2] grid grid-cols-3 gap-4 sm:gap-6 max-w-md mx-auto lg:mx-0"
             >
               {[
-                { k: "Global", v: "Partnerships" },
-                { k: "ISO", v: "Standards" },
-                { k: "24/7", v: "Reliability" },
+                { k: t("hero.statGlobal"), v: t("hero.statGlobalSub") },
+                { k: t("hero.statIso"), v: t("hero.statIsoSub") },
+                { k: t("hero.statReliable"), v: t("hero.statReliableSub") },
               ].map((s) => (
                 <div key={s.k} className="text-center lg:text-left">
-                  <p className="font-bold text-xl sm:text-2xl text-[#1E244B]" style={{ fontFamily: "Manrope, sans-serif" }}>{s.k}</p>
+                  <p className="font-bold text-xl sm:text-2xl text-[#1E244B]" style={{ fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}>{s.k}</p>
                   <p className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8892A4] mt-1">{s.v}</p>
                 </div>
               ))}
             </motionFM.div>
           </div>
 
-          {/* Right Column: Visual — only show on md+ for performance/layout */}
+          {/* Right Column: Visual */}
           <div className="lg:col-span-6 relative flex items-center justify-center pt-4 lg:pt-0">
             {/* Soft glow behind image */}
             <motionFM.div
@@ -157,10 +161,10 @@ export function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/20 to-transparent" />
             </motionFM.div>
 
-            {/* Floating Trust Cards — hidden on mobile to prevent overflow */}
+            {/* Floating Trust Cards */}
             {trustCards.map((card, i) => (
               <motionFM.div
-                key={card.text}
+                key={card.key}
                 initial={{ opacity: 0, y: 15, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
@@ -169,7 +173,10 @@ export function HeroSection() {
                   type: "spring",
                   stiffness: 100,
                 }}
-                className={`absolute glass rounded-[16px] sm:rounded-[20px] px-3 sm:px-4 py-2 sm:py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] border border-white/60 items-center gap-2.5 z-20 hover:scale-105 transition-transform duration-300 hidden sm:flex ${card.position}`}
+                className={cn(
+                  "absolute glass rounded-[16px] sm:rounded-[20px] px-3 sm:px-4 py-2 sm:py-3 shadow-[0_12px_30px_rgba(0,0,0,0.06)] border border-white/60 items-center gap-2.5 z-20 hover:scale-105 transition-transform duration-300 hidden sm:flex",
+                  card.position
+                )}
               >
                 <div
                   className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg flex items-center justify-center flex-shrink-0"
@@ -185,7 +192,7 @@ export function HeroSection() {
                   <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white stroke-[3px]" />
                 </div>
                 <span className="text-[11px] sm:text-[13px] font-bold text-[#1E244B] whitespace-nowrap">
-                  {card.text}
+                  {t(card.key)}
                 </span>
               </motionFM.div>
             ))}
@@ -197,7 +204,7 @@ export function HeroSection() {
       {/* Scroll indicator */}
       <div className="absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-60">
         <span className="text-[10px] font-bold uppercase tracking-widest text-[#8892A4]">
-          Explore
+          {t("hero.explore")}
         </span>
         <ChevronDown className="w-4 h-4 animate-bounce text-[#5B43D6]" />
       </div>

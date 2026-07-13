@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { LanguageProvider } from "@/components/layout/language-context";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -86,7 +87,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

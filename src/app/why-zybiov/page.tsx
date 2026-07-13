@@ -1,17 +1,15 @@
+"use client";
+
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhyZybiovSection } from "@/components/sections/why-zybiov";
 import { AspirationsSection } from "@/components/sections/aspirations";
-import { Metadata } from "next";
+import { useLanguage } from "@/components/layout/language-context";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "Why Zybiov | Zybiov Multi-Activities Limited",
-  description:
-    "Learn what sets Zybiov apart: global partnerships, professional management, scalability, and full regulatory compliance.",
-};
-
 export default function WhyZybiovPage() {
+  const { t, language } = useLanguage();
+
   return (
     <>
       <Navbar />
@@ -45,25 +43,43 @@ export default function WhyZybiovPage() {
           />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
-            <span className="section-tag mb-5">Our Strengths</span>
+            <span className="section-tag mb-5">{t("whyPage.tag")}</span>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-4"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
-              Why{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Zybiov
-              </span>
+              {language === "en" ? (
+                <>
+                  Why{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    Zybiov
+                  </span>
+                </>
+              ) : (
+                <>
+                  لماذا{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    زيبيوف
+                  </span>
+                </>
+              )}
             </h1>
             <p className="text-base sm:text-lg max-w-2xl mx-auto text-[#5E647A] leading-relaxed">
-              Differentiating ourselves through global network partnerships, compliance excellence, and scalability.
+              {t("whyPage.desc")}
             </p>
           </div>
         </section>

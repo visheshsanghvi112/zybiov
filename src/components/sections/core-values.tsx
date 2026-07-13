@@ -2,52 +2,48 @@
 
 import { Reveal, StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
-import { Star, Shield, Lightbulb, Scale, Heart } from "lucide-react";
-
-const coreValues = [
-  {
-    icon: Star,
-    title: "Institutional Excellence",
-    description: "Quality is the compass that guides every aspect of our operations.",
-    gradient: "linear-gradient(135deg, #5B43D6, #4A31C0)",
-    lightBg: "rgba(91,67,214,0.06)",
-    borderColor: "rgba(91,67,214,0.12)",
-  },
-  {
-    icon: Shield,
-    title: "Professional Integrity",
-    description: "Absolute transparency forms the foundation of our relationships and business practices.",
-    gradient: "linear-gradient(135deg, #2B7DDC, #1a6bc4)",
-    lightBg: "rgba(43,125,220,0.06)",
-    borderColor: "rgba(43,125,220,0.12)",
-  },
-  {
-    icon: Lightbulb,
-    title: "Continuous Innovation",
-    description: "We anticipate the future by continuously developing our capabilities and embracing evolving technologies and market dynamics.",
-    gradient: "linear-gradient(135deg, #28B7C7, #1a9baa)",
-    lightBg: "rgba(40,183,199,0.06)",
-    borderColor: "rgba(40,183,199,0.12)",
-  },
-  {
-    icon: Scale,
-    title: "Strategic Compliance",
-    description: "We are fully committed to complying with all applicable laws, regulations, and industry standards.",
-    gradient: "linear-gradient(135deg, #5E35B1, #4527A0)",
-    lightBg: "rgba(94,53,177,0.06)",
-    borderColor: "rgba(94,53,177,0.12)",
-  },
-  {
-    icon: Heart,
-    title: "Customer-Centricity",
-    description: "Exceeding customer expectations is at the heart of everything we do.",
-    gradient: "linear-gradient(135deg, #3949AB, #283593)",
-    lightBg: "rgba(57,73,171,0.06)",
-    borderColor: "rgba(57,73,171,0.12)",
-  },
-];
+import { Star, Shield, Lightbulb, Users } from "lucide-react";
+import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 export function CoreValuesSection() {
+  const { t, language, dir } = useLanguage();
+
+  const coreValues = [
+    {
+      icon: Star,
+      title: t("coreValues.val1Title"),
+      desc: t("coreValues.val1Desc"),
+      gradient: "linear-gradient(135deg, #5B43D6, #4A31C0)",
+      lightBg: "rgba(91,67,214,0.06)",
+      borderColor: "rgba(91,67,214,0.12)",
+    },
+    {
+      icon: Shield,
+      title: t("coreValues.val2Title"),
+      desc: t("coreValues.val2Desc"),
+      gradient: "linear-gradient(135deg, #2B7DDC, #1a6bc4)",
+      lightBg: "rgba(43,125,220,0.06)",
+      borderColor: "rgba(43,125,220,0.12)",
+    },
+    {
+      icon: Lightbulb,
+      title: t("coreValues.val3Title"),
+      desc: t("coreValues.val3Desc"),
+      gradient: "linear-gradient(135deg, #28B7C7, #1a9baa)",
+      lightBg: "rgba(40,183,199,0.06)",
+      borderColor: "rgba(40,183,199,0.12)",
+    },
+    {
+      icon: Users,
+      title: t("coreValues.val4Title"),
+      desc: t("coreValues.val4Desc"),
+      gradient: "linear-gradient(135deg, #5E35B1, #4527A0)",
+      lightBg: "rgba(94,53,177,0.06)",
+      borderColor: "rgba(94,53,177,0.12)",
+    },
+  ];
+
   return (
     <section
       id="values"
@@ -68,41 +64,56 @@ export function CoreValuesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <Reveal className="text-center mb-12 sm:mb-16">
-          <span className="section-tag mb-4 sm:mb-5 inline-flex">Core Values</span>
+          <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("coreValues.tag")}</span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
             style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}
           >
-            The Principles That{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Define Us
-            </span>
+            {language === "en" ? (
+              <>
+                The Principles That{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Define Us
+                </span>
+              </>
+            ) : (
+              <>
+                المبادئ التي{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  تحدد هويتنا
+                </span>
+              </>
+            )}
           </h2>
           <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "#5E647A" }}>
-            Five foundational pillars that shape our culture, decisions, and commitment to excellence.
+            {t("coreValues.desc")}
           </p>
         </Reveal>
 
-        {/* Values grid — all 5 cards in responsive grid */}
+        {/* Values grid */}
         <StaggerContainer staggerDelay={0.1}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {coreValues.map((value, idx) => (
               <motion.div
-                key={value.title}
+                key={idx}
                 variants={fadeUpItem}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3 }}
-                className={`premium-card rounded-3xl p-7 sm:p-8 border ${
-                  // Last item on lg: span full width of last row if 5 cards
-                  idx === 4 ? "sm:col-span-2 lg:col-span-1" : ""
-                }`}
+                className="premium-card rounded-3xl p-7 sm:p-8 border"
                 style={{
                   background: value.lightBg,
                   borderColor: value.borderColor,
@@ -122,12 +133,12 @@ export function CoreValuesSection() {
                   {value.title}
                 </h3>
                 <p className="text-[14px] sm:text-[15px] leading-relaxed" style={{ color: "#5E647A" }}>
-                  {value.description}
+                  {value.desc}
                 </p>
 
                 {/* Bottom accent */}
                 <div
-                  className="mt-5 sm:mt-6 h-1 w-10 sm:w-12 rounded-full"
+                  className={cn("mt-5 sm:mt-6 h-1 w-10 sm:w-12 rounded-full", dir === "rtl" ? "mr-0" : "ml-0")}
                   style={{ background: value.gradient }}
                 />
               </motion.div>

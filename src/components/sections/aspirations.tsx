@@ -5,8 +5,18 @@ import { Reveal } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 export function AspirationsSection() {
+  const { t, dir } = useLanguage();
+
+  const pillars = [
+    { label: t("aspirations.pillar1Title"), sub: t("aspirations.pillar1Desc") },
+    { label: t("aspirations.pillar2Title"), sub: t("aspirations.pillar2Desc") },
+    { label: t("aspirations.pillar3Title"), sub: t("aspirations.pillar3Desc") },
+  ];
+
   return (
     <section
       id="aspirations"
@@ -50,41 +60,29 @@ export function AspirationsSection() {
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 sm:mb-8"
                   style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.15)" }}>
                   <span className="w-1.5 h-1.5 rounded-full bg-[#28B7C7] animate-pulse" />
-                  Future Aspirations
+                  {t("aspirations.tag")}
                 </span>
               </Reveal>
 
               <Reveal delay={0.1}>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
                   style={{ fontFamily: "Manrope, sans-serif" }}>
-                  Building a{" "}
-                  <span style={{
-                    background: "linear-gradient(135deg, #28B7C7 0%, #2B7DDC 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}>
-                    Healthier Future
-                  </span>
+                  {t("aspirations.title")}
                 </h2>
               </Reveal>
 
               <Reveal delay={0.2}>
                 <p className="text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-12 text-white/80 max-w-3xl mx-auto">
-                  We aspire to strengthen our position as a trusted partner in the healthcare sector while continuously exploring promising opportunities across the industrial and logistics sectors. Through this strategic vision, we aim to establish ourselves as a diversified multi-activities company with a meaningful impact at both the regional and international levels.
+                  {t("aspirations.desc")}
                 </p>
               </Reveal>
 
               {/* Aspiration pillars */}
               <Reveal delay={0.3}>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
-                  {[
-                    { label: "Healthcare Leadership", sub: "Trusted partner in pharma & medical" },
-                    { label: "Regional Expansion", sub: "Meaningful impact at regional & international level" },
-                    { label: "Sector Diversification", sub: "Industrial, logistics & technology sectors" },
-                  ].map((pillar) => (
+                  {pillars.map((pillar, idx) => (
                     <div
-                      key={pillar.label}
+                      key={idx}
                       className="rounded-2xl p-5 sm:p-6 text-center"
                       style={{
                         background: "rgba(255,255,255,0.06)",
@@ -107,15 +105,15 @@ export function AspirationsSection() {
                     className="btn-primary"
                     style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}
                   >
-                    Get In Touch
-                    <ArrowRight className="w-4 h-4" />
+                    {t("aspirations.ctaGetInTouch")}
+                    <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                   </Link>
                   <Link
                     href="/expertise"
                     className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:bg-white/10"
                     style={{ border: "2px solid rgba(255,255,255,0.3)", fontSize: "0.9375rem" }}
                   >
-                    Our Expertise
+                    {t("aspirations.ctaExpertise")}
                   </Link>
                 </div>
               </Reveal>

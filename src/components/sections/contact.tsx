@@ -5,6 +5,8 @@ import { Reveal } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
 import { Send, User, Mail, Phone, Building2, MessageSquare, MapPin, Globe } from "lucide-react";
 import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon } from "@/components/icons/social-icons";
+import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 const socialLinks = [
   { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", handle: "www.zybiov.com" },
@@ -14,6 +16,7 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
+  const { language, t, dir } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,21 +54,37 @@ export function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <Reveal className="text-center mb-12 sm:mb-16">
-          <span className="section-tag mb-4 sm:mb-5 inline-flex">Contact Us</span>
+          <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("contactPage.tag")}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
             style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
-            Let&apos;s{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}>
-              Connect
-            </span>
+            {language === "en" ? (
+              <>
+                Let&apos;s{" "}
+                <span style={{
+                  background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>
+                  Connect
+                </span>
+              </>
+            ) : (
+              <>
+                دعنا{" "}
+                <span style={{
+                  background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>
+                  نتواصل
+                </span>
+              </>
+            )}
           </h2>
           <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "#5E647A" }}>
-            Reach out to learn more about our pharmaceutical distribution solutions and partnership opportunities.
+            {t("contactPage.desc")}
           </p>
         </Reveal>
 
@@ -82,7 +101,7 @@ export function ContactSection() {
                 <div className="absolute inset-0 opacity-[0.05] rounded-3xl overflow-hidden"
                   style={{ backgroundImage: "radial-gradient(white 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-5 sm:mb-6" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  Get in Touch
+                  {t("contactPage.infoTitle")}
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -90,8 +109,8 @@ export function ContactSection() {
                       <MapPin className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">Location</p>
-                      <p className="text-white text-xs sm:text-sm font-medium">Sudan — Regional & International Operations</p>
+                      <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">{t("contactPage.locationLabel")}</p>
+                      <p className="text-white text-xs sm:text-sm font-medium">{t("contactPage.locationValue")}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -112,7 +131,7 @@ export function ContactSection() {
               {/* Social links */}
               <div className="rounded-3xl p-6 sm:p-8 border flex-1"
                 style={{ background: "#FAFBFD", borderColor: "#E4E7F2", boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}>
-                <h3 className="text-sm sm:text-[16px] font-bold mb-4 sm:mb-5" style={{ color: "#1E244B" }}>Follow Us</h3>
+                <h3 className="text-sm sm:text-[16px] font-bold mb-4 sm:mb-5" style={{ color: "#1E244B" }}>{t("contactPage.followUs")}</h3>
                 <div className="space-y-3 sm:space-y-4">
                   {socialLinks.map((s) => (
                     <a
@@ -152,22 +171,22 @@ export function ContactSection() {
                     <Send className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
-                    Message Sent!
+                    {t("contactPage.successTitle")}
                   </h3>
-                  <p className="text-sm sm:text-base" style={{ color: "#5E647A" }}>Thank you for reaching out. We&apos;ll get back to you shortly.</p>
+                  <p className="text-sm sm:text-base" style={{ color: "#5E647A" }}>{t("contactPage.successDesc")}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
                   <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
-                    Send a Message
+                    {t("contactPage.formTitle")}
                   </h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     {/* Name */}
                     <div className="relative">
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>Full Name *</label>
+                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelName")}</label>
                       <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#8892A4" }} />
+                        <User className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
                           id="contact-name"
                           type="text"
@@ -175,17 +194,17 @@ export function ContactSection() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          placeholder="Your full name"
-                          className="form-input pl-11"
+                          placeholder={t("contactPage.placeholderName")}
+                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
                         />
                       </div>
                     </div>
 
                     {/* Email */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>Email Address *</label>
+                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelEmail")}</label>
                       <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#8892A4" }} />
+                        <Mail className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
                           id="contact-email"
                           type="email"
@@ -193,42 +212,42 @@ export function ContactSection() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          placeholder="your@email.com"
-                          className="form-input pl-11"
+                          placeholder={t("contactPage.placeholderEmail")}
+                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
                         />
                       </div>
                     </div>
 
                     {/* Phone */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>Phone Number</label>
+                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelPhone")}</label>
                       <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#8892A4" }} />
+                        <Phone className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
                           id="contact-phone"
                           type="tel"
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="+249 ..."
-                          className="form-input pl-11"
+                          placeholder={t("contactPage.placeholderPhone")}
+                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
                         />
                       </div>
                     </div>
 
                     {/* Company */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>Company / Organization</label>
+                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelCompany")}</label>
                       <div className="relative">
-                        <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#8892A4" }} />
+                        <Building2 className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
                           id="contact-company"
                           type="text"
                           name="company"
                           value={formData.company}
                           onChange={handleChange}
-                          placeholder="Your company name"
-                          className="form-input pl-11"
+                          placeholder={t("contactPage.placeholderCompany")}
+                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
                         />
                       </div>
                     </div>
@@ -236,18 +255,18 @@ export function ContactSection() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>Message *</label>
+                    <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelMessage")}</label>
                     <div className="relative">
-                      <MessageSquare className="absolute left-4 top-4 w-4 h-4" style={{ color: "#8892A4" }} />
+                      <MessageSquare className={cn("absolute w-4 h-4", dir === "rtl" ? "right-4 top-4" : "left-4 top-4")} style={{ color: "#8892A4" }} />
                       <textarea
-                        id="contact-message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        placeholder="Tell us about your needs or inquiry..."
-                        rows={5}
-                        className="form-input pl-11 resize-none"
+                          id="contact-message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          placeholder={t("contactPage.placeholderMessage")}
+                          rows={5}
+                          className={cn("form-input resize-none", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
                       />
                     </div>
                   </div>
@@ -256,11 +275,14 @@ export function ContactSection() {
                     type="submit"
                     whileHover={{ scale: 1.01, boxShadow: "0 12px 36px rgba(91,67,214,0.4)" }}
                     whileTap={{ scale: 0.99 }}
-                    className="btn-primary justify-center mt-2 w-full sm:w-auto self-start"
+                    className={cn(
+                      "btn-primary justify-center mt-2 w-full sm:w-auto",
+                      dir === "rtl" ? "self-end" : "self-start"
+                    )}
                     id="contact-submit"
                   >
-                    Send Message
-                    <Send className="w-4 h-4" />
+                    {t("contactPage.btnSend")}
+                    <Send className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                   </motion.button>
                 </form>
               )}

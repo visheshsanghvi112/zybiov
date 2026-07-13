@@ -1,17 +1,15 @@
+"use client";
+
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ExpertiseSection } from "@/components/sections/expertise";
 import { AspirationsSection } from "@/components/sections/aspirations";
-import { Metadata } from "next";
+import { useLanguage } from "@/components/layout/language-context";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "Areas of Expertise | Zybiov Multi-Activities Limited",
-  description:
-    "Explore Zybiov's primary specializations in the Medical & Pharmaceutical sectors, alongside our strategic expansion into logistics, general trading, and industrial technology.",
-};
-
 export default function ExpertisePage() {
+  const { t, language } = useLanguage();
+
   return (
     <>
       <Navbar />
@@ -45,25 +43,43 @@ export default function ExpertisePage() {
           />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
-            <span className="section-tag mb-5">Our Sectors</span>
+            <span className="section-tag mb-5">{t("expertisePage.tag")}</span>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-4"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
-              Areas of{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #2B7DDC 0%, #28B7C7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Expertise
-              </span>
+              {language === "en" ? (
+                <>
+                  Areas of{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #2B7DDC 0%, #28B7C7 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    Expertise
+                  </span>
+                </>
+              ) : (
+                <>
+                  مجالات{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #2B7DDC 0%, #28B7C7 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    الخبرة
+                  </span>
+                </>
+              )}
             </h1>
             <p className="text-base sm:text-lg max-w-2xl mx-auto text-[#5E647A] leading-relaxed">
-              Integrated pharmaceutical distribution services paired with diversified expansion in logistics, trading, and industrial tech.
+              {t("expertisePage.desc")}
             </p>
           </div>
         </section>

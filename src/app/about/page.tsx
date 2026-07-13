@@ -1,18 +1,16 @@
+"use client";
+
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AboutSection } from "@/components/sections/about";
 import { VisionMissionSection } from "@/components/sections/vision-mission";
 import { CoreValuesSection } from "@/components/sections/core-values";
 import { AspirationsSection } from "@/components/sections/aspirations";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "About Us | Zybiov Multi-Activities Limited",
-  description:
-    "Learn about Zybiov Multi-Activities Limited, a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies.",
-};
+import { useLanguage } from "@/components/layout/language-context";
 
 export default function AboutPage() {
+  const { t, language } = useLanguage();
+
   return (
     <>
       <Navbar />
@@ -37,25 +35,43 @@ export default function AboutPage() {
             style={{ background: "radial-gradient(circle, #5B43D6 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="section-tag mb-4 sm:mb-5 inline-flex">Corporate Profile</span>
+            <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("aboutPage.tag")}</span>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-5 sm:mb-6 mt-4 sm:mt-5"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
-              About{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Zybiov
-              </span>
+              {language === "en" ? (
+                <>
+                  About{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    Zybiov
+                  </span>
+                </>
+              ) : (
+                <>
+                  حول{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    زيبيوف
+                  </span>
+                </>
+              )}
             </h1>
             <p className="text-base sm:text-lg max-w-2xl mx-auto text-[#5E647A] leading-relaxed">
-              Strengthening the healthcare system through quality, compliance, and strategic global partnerships.
+              {t("aboutPage.desc")}
             </p>
           </div>
         </section>

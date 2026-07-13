@@ -3,14 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "./language-context";
+import { cn } from "@/lib/utils";
 import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon } from "@/components/icons/social-icons";
 
 const footerLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Areas of Expertise", href: "/expertise" },
-  { label: "Why Zybiov", href: "/why-zybiov" },
-  { label: "Contact", href: "/contact" },
+  { key: "nav.home", href: "/" },
+  { key: "nav.about", href: "/about" },
+  { key: "nav.expertise", href: "/expertise" },
+  { key: "nav.whyZybiov", href: "/why-zybiov" },
+  { key: "nav.contact", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -21,6 +23,8 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const { language, t, dir } = useLanguage();
+
   return (
     <footer className="bg-[#1E244B] text-white relative overflow-hidden">
       {/* Background decorations */}
@@ -40,7 +44,7 @@ export function Footer() {
                 <div className="relative w-[130px] h-[48px]">
                   <Image
                     src="/logo.png"
-                    alt="Zybiov Multi-Activities Limited"
+                    alt={t("brandName")}
                     fill
                     className="object-contain"
                     sizes="130px"
@@ -49,7 +53,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
-              Quality in Every Step Toward Better Healthcare. A leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies.
+              {t("footer.desc")}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((s) => (
@@ -69,7 +73,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">Quick Links</h3>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">{t("footer.quickLinks")}</h3>
             <ul className="space-y-3">
               {footerLinks.map((link) => (
                 <li key={link.href}>
@@ -77,8 +81,12 @@ export function Footer() {
                     href={link.href}
                     className="text-white/55 text-sm hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                   >
-                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-[#5B43D6]" />
-                    {link.label}
+                    <ArrowRight className={cn(
+                      "w-3 h-3 opacity-0 transition-all duration-200 text-[#5B43D6]",
+                      dir === "rtl" ? "rotate-180 translate-x-2 group-hover:translate-x-0" : "-translate-x-2 group-hover:translate-x-0",
+                      "group-hover:opacity-100"
+                    )} />
+                    {t(link.key)}
                   </Link>
                 </li>
               ))}
@@ -87,7 +95,7 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">Connect</h3>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">{t("footer.connect")}</h3>
             <ul className="space-y-4">
               {socialLinks.map((s) => (
                 <li key={s.label}>
@@ -111,10 +119,10 @@ export function Footer() {
         {/* Bottom */}
         <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} Zybiov Multi-Activities Limited. All rights reserved.
+            © {new Date().getFullYear()} {t("brandName")}. {t("footer.allRights")}
           </p>
           <p className="text-white/30 text-xs">
-            Quality in Every Step Toward Better Healthcare.
+            {t("tagline")}
           </p>
         </div>
       </div>

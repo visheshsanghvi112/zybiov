@@ -4,8 +4,12 @@ import Image from "next/image";
 import { Reveal } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
 import { Eye, Target } from "lucide-react";
+import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 export function VisionMissionSection() {
+  const { t, dir } = useLanguage();
+
   return (
     <section
       id="vision"
@@ -23,33 +27,25 @@ export function VisionMissionSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <Reveal className="text-center mb-12 sm:mb-16">
-          <span className="section-tag mb-4 sm:mb-5 inline-flex">Vision & Mission</span>
+          <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("visionMission.tag")}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
             style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
-            Guiding Our{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}>
-              Purpose
-            </span>
+            {t("visionMission.title")}
           </h2>
           <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "#5E647A" }}>
-            Driven by a clear vision and a powerful mission to transform healthcare delivery.
+            {t("visionMission.desc")}
           </p>
         </Reveal>
 
         {/* Mobile: stack Vision → Image → Mission */}
         {/* Desktop: 3-col grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {/* Vision Card */}
           <Reveal delay={0.1} className="lg:col-span-1">
             <motion.div
               whileHover={{ y: -6, boxShadow: "0 30px 70px rgba(91,67,214,0.15)" }}
               transition={{ duration: 0.3 }}
-              className="rounded-3xl p-7 sm:p-8 relative overflow-hidden"
+              className="rounded-3xl p-7 sm:p-8 relative overflow-hidden h-full flex flex-col justify-between"
               style={{
                 background: "linear-gradient(135deg, #5B43D6 0%, #4A31C0 100%)",
                 boxShadow: "0 20px 50px rgba(91,67,214,0.2)"
@@ -65,10 +61,10 @@ export function VisionMissionSection() {
                   <Eye className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  Our Vision
+                  {t("visionMission.visionTitle")}
                 </h3>
                 <p className="text-white/85 leading-relaxed text-[14px] sm:text-[15px]">
-                  To be the driving force and the preferred destination for high-quality healthcare solutions, setting the benchmark for operational excellence across the industry.
+                  {t("visionMission.visionDesc")}
                 </p>
               </div>
             </motion.div>
@@ -76,7 +72,7 @@ export function VisionMissionSection() {
 
           {/* Center: Image — visible on all screens */}
           <Reveal delay={0.2} className="lg:col-span-1">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: "3/4" }}>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[300px]" style={{ aspectRatio: "3/4" }}>
               <Image
                 src="/patient-care.png"
                 alt="Zybiov delivering healthcare to Sudanese communities"
@@ -87,11 +83,11 @@ export function VisionMissionSection() {
               <div className="absolute inset-0" style={{
                 background: "linear-gradient(180deg, transparent 40%, rgba(30,36,75,0.6) 100%)"
               }} />
-              <div className="absolute bottom-5 sm:bottom-6 left-5 sm:left-6 right-5 sm:right-6">
-                <p className="text-white/90 text-sm font-medium italic leading-relaxed">
-                  &quot;Quality in Every Step Toward Better Healthcare.&quot;
+              <div className={cn("absolute bottom-5 sm:bottom-6 px-6", dir === "rtl" ? "right-5 sm:right-6" : "left-5 sm:left-6")}>
+                <p className="text-white/95 text-sm font-medium italic leading-relaxed">
+                  &quot;{t("footer.tagline")}&quot;
                 </p>
-                <p className="text-white/60 text-xs mt-1">— Zybiov Multi-Activities Limited</p>
+                <p className="text-white/60 text-xs mt-1">— {t("aboutPage.title")}</p>
               </div>
             </div>
           </Reveal>
@@ -101,7 +97,7 @@ export function VisionMissionSection() {
             <motion.div
               whileHover={{ y: -6, boxShadow: "0 30px 70px rgba(43,125,220,0.15)" }}
               transition={{ duration: 0.3 }}
-              className="rounded-3xl p-7 sm:p-8 relative overflow-hidden"
+              className="rounded-3xl p-7 sm:p-8 relative overflow-hidden h-full flex flex-col justify-between"
               style={{
                 background: "linear-gradient(135deg, #2B7DDC 0%, #1a6bc4 100%)",
                 boxShadow: "0 20px 50px rgba(43,125,220,0.2)"
@@ -117,10 +113,10 @@ export function VisionMissionSection() {
                   <Target className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  Our Mission
+                  {t("visionMission.missionTitle")}
                 </h3>
                 <p className="text-white/85 leading-relaxed text-[14px] sm:text-[15px]">
-                  To provide premium pharmaceutical and medical products through strategic partnerships with leading global manufacturers, while ensuring supply chain efficiency, exceptional service quality, and full compliance with the highest international standards.
+                  {t("visionMission.missionDesc")}
                 </p>
               </div>
             </motion.div>

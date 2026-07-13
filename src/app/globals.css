@@ -66,6 +66,10 @@ body {
   min-height: 100vh;
 }
 
+html[lang="ar"] body, html.lang-ar body {
+  font-family: "Cairo", sans-serif;
+}
+
 /* ─── Focus Ring ─── */
 :focus-visible {
   outline: 2.5px solid var(--primary);
@@ -241,3 +245,18 @@ main { animation: fadeIn 0.45s ease both; }
 
 /* ─── Smooth image load ─── */
 img { transition: opacity 0.3s ease; }
+
+/* ─── Arabic (RTL) Customizations ─── */
+html.ar-mode,
+html.ar-mode body,
+html.ar-mode input,
+html.ar-mode textarea,
+html.ar-mode button,
+html.ar-mode select {
+  font-family: "Cairo", sans-serif !important;
+}
+
+html.ar-mode .section-tag {
+  letter-spacing: 0;
+}
+

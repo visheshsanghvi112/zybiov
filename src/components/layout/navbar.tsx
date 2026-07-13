@@ -3,22 +3,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, Phone } from "lucide-react";
+import { Menu, X, ArrowRight, Phone, Globe } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "./language-context";
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Expertise", href: "/expertise" },
-  { label: "Why Zybiov", href: "/why-zybiov" },
-  { label: "Contact", href: "/contact" },
+  { key: "nav.home", href: "/" },
+  { key: "nav.about", href: "/about" },
+  { key: "nav.expertise", href: "/expertise" },
+  { key: "nav.whyZybiov", href: "/why-zybiov" },
+  { key: "nav.contact", href: "/contact" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { language, setLanguage, t, dir } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,14 +60,17 @@ export function Navbar() {
         )}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[80px] sm:h-[88px]">
-          {/* Logo — larger and more prominent */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
             <div className="relative w-[160px] h-[58px] sm:w-[200px] sm:h-[72px] lg:w-[220px] lg:h-[80px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
                 src="/logo.png"
-                alt="Zybiov Multi-Activities Limited"
+                alt={t("brandName")}
                 fill
-                className="object-contain object-left"
+                className={cn(
+                  "object-contain",
+                  dir === "rtl" ? "object-right" : "object-left"
+                )}
                 priority
                 sizes="(max-width: 640px) 160px, (max-width: 1024px) 200px, 220px"
               />
@@ -85,7 +90,7 @@ export function Navbar() {
                     isActive ? "text-[#5B43D6]" : "text-[#1E244B]"
                   )}
                 >
-                  {link.label}
+                  {t(link.key)}
                   {isActive && (
                     <motion.span
                       layoutId="activeNavUnderline"
@@ -98,23 +103,38 @@ export function Navbar() {
             })}
           </div>
 
-          {/* CTA — desktop only */}
+          {/* CTA & Language Toggle — desktop only */}
           <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#E4E7F2]/80 text-[13px] font-bold text-[#1E244B] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5 transition-all duration-200 cursor-pointer"
+            >
+              <Globe className="w-4 h-4" />
+              <span>{language === "en" ? "العربية" : "English"}</span>
+            </button>
             <Link href="/contact" className="btn-primary text-sm py-2.5 px-6">
-              Contact Us
-              <ArrowRight className="w-4 h-4" />
+              {t("contactUs")}
+              <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", dir === "rtl" && "rotate-180")} />
             </Link>
           </div>
 
-          {/* Mobile menu toggle */}
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/8 transition-all duration-200 active:scale-95"
-            aria-label="Open menu"
-            aria-expanded={mobileOpen}
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+          {/* Mobile menu toggle & Language Toggle */}
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+              className="w-10 h-10 flex items-center justify-center rounded-xl border border-[#E4E7F2]/80 text-xs font-bold text-[#1E244B] hover:bg-[#5B43D6]/5 active:scale-95 transition-all cursor-pointer"
+            >
+              {language === "en" ? "عربي" : "EN"}
+            </button>
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/8 transition-all duration-200 active:scale-95 cursor-pointer"
+              aria-label={t("nav.openMenu")}
+              aria-expanded={mobileOpen}
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </nav>
       </motion.header>
 
@@ -132,15 +152,18 @@ export function Navbar() {
               className="fixed inset-0 z-[60] bg-[#0d1136]/50 backdrop-blur-sm lg:hidden"
             />
 
-            {/* Drawer panel — slides in from RIGHT */}
+            {/* Drawer panel */}
             <motion.aside
-              initial={{ x: "100%" }}
+              initial={{ x: dir === "rtl" ? "-100%" : "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              exit={{ x: dir === "rtl" ? "-100%" : "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 220, mass: 0.8 }}
-              className="fixed right-0 top-0 bottom-0 z-[70] w-[310px] sm:w-[360px] bg-white shadow-[−8px_0_40px_rgba(30,36,75,0.15)] flex flex-col lg:hidden overflow-hidden"
+              className={cn(
+                "fixed top-0 bottom-0 z-[70] w-[310px] sm:w-[360px] bg-white shadow-[0_0_40px_rgba(30,36,75,0.15)] flex flex-col lg:hidden overflow-hidden",
+                dir === "rtl" ? "left-0" : "right-0"
+              )}
             >
-              {/* Decorative top gradient strip */}
+              {/* Top gradient strip */}
               <div className="h-1 w-full bg-gradient-to-r from-[#5B43D6] via-[#7C5CFC] to-[#A78BFA]" />
 
               {/* Header */}
@@ -148,16 +171,19 @@ export function Navbar() {
                 <div className="relative w-[130px] h-[46px]">
                   <Image
                     src="/logo.png"
-                    alt="Zybiov"
+                    alt={t("brandShort")}
                     fill
-                    className="object-contain object-left"
+                    className={cn(
+                      "object-contain",
+                      dir === "rtl" ? "object-right" : "object-left"
+                    )}
                     priority
                   />
                 </div>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F5F4FF] text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95"
-                  aria-label="Close menu"
+                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F5F4FF] text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
+                  aria-label={t("nav.closeMenu")}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -170,7 +196,7 @@ export function Navbar() {
                   return (
                     <motion.div
                       key={link.href}
-                      initial={{ opacity: 0, x: 30 }}
+                      initial={{ opacity: 0, x: dir === "rtl" ? -30 : 30 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.05 + i * 0.06, ease: "easeOut" }}
                     >
@@ -184,13 +210,14 @@ export function Navbar() {
                             : "text-[#1E244B] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5"
                         )}
                       >
-                        <span>{link.label}</span>
+                        <span>{t(link.key)}</span>
                         <span
                           className={cn(
                             "w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-200",
                             isActive
                               ? "bg-[#5B43D6] text-white"
-                              : "bg-[#F0F2FA] text-[#5B43D6] group-hover:bg-[#5B43D6]/10"
+                              : "bg-[#F0F2FA] text-[#5B43D6] group-hover:bg-[#5B43D6]/10",
+                            dir === "rtl" ? "rotate-180" : ""
                           )}
                         >
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -201,27 +228,34 @@ export function Navbar() {
                 })}
               </div>
 
-              {/* Footer CTA */}
+              {/* Footer CTA & Language Toggle */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
                 className="p-5 border-t border-[#F0F2FA] bg-[#FAFBFD] space-y-3"
               >
+                <button
+                  onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+                  className="flex items-center justify-center gap-2 w-full bg-white border border-[#E4E7F2] text-[#1E244B] font-bold text-[14px] py-3 px-6 rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                >
+                  <Globe className="w-4 h-4" />
+                  <span>{language === "en" ? "العربية" : "English"}</span>
+                </button>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-center gap-2 w-full bg-[#5B43D6] hover:bg-[#4A35C0] text-white font-semibold text-[15px] py-3.5 px-6 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_4px_16px_rgba(91,67,214,0.3)]"
                 >
-                  Contact Us
-                  <ArrowRight className="w-4 h-4" />
+                  {t("contactUs")}
+                  <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                 </Link>
                 <a
                   href="tel:+1234567890"
                   className="flex items-center justify-center gap-2 w-full text-[14px] font-medium text-[#5B6790] hover:text-[#5B43D6] transition-colors duration-200"
                 >
                   <Phone className="w-3.5 h-3.5" />
-                  <span>Get in touch with us</span>
+                  <span>{t("nav.touch")}</span>
                 </a>
               </motion.div>
             </motion.aside>

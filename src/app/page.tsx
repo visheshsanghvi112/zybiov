@@ -1,15 +1,20 @@
+"use client";
+
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero";
 import { StatsStrip } from "@/components/sections/stats-strip";
 import { AspirationsSection } from "@/components/sections/aspirations";
-import { Reveal, StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
+import { Reveal } from "@/components/animations/reveal";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Heart, Users, CheckCircle2, ChevronRight, Globe2, Package } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Heart, Users, CheckCircle2, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/components/layout/language-context";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
+  const { t, language, dir } = useLanguage();
+
   return (
     <>
       <Navbar />
@@ -39,41 +44,60 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/20 to-transparent" />
                 </div>
                 {/* Float Badge */}
-                <div className="absolute -bottom-5 sm:-bottom-6 -right-3 sm:-right-4 glass rounded-[16px] sm:rounded-[20px] p-4 sm:p-5 shadow-[0_12px_30px_rgba(0,0,0,0.05)] border border-white/80 max-w-[180px] sm:max-w-[200px]">
-                  <p className="text-sm font-bold text-[#1E244B] mb-0.5">Reliable Supply Chain</p>
-                  <p className="text-xs text-[#5E647A]">Connecting global quality with local healthcare needs</p>
+                <div className={cn(
+                  "absolute -bottom-5 sm:-bottom-6 glass rounded-[16px] sm:rounded-[20px] p-4 sm:p-5 shadow-[0_12px_30px_rgba(0,0,0,0.05)] border border-white/80 max-w-[180px] sm:max-w-[200px] z-10",
+                  dir === "rtl" ? "-left-3 sm:-left-4" : "-right-3 sm:-right-4"
+                )}>
+                  <p className="text-sm font-bold text-[#1E244B] mb-0.5">{t("aboutTeaser.floatBadgeTitle")}</p>
+                  <p className="text-xs text-[#5E647A]">{t("aboutTeaser.floatBadgeDesc")}</p>
                 </div>
               </Reveal>
 
               {/* Right Column: Description & Routing CTA */}
               <div className="flex flex-col">
                 <Reveal>
-                  <span className="section-tag mb-4 sm:mb-5">Who We Are</span>
+                  <span className="section-tag mb-4 sm:mb-5">{t("aboutTeaser.tag")}</span>
                 </Reveal>
                 <Reveal delay={0.1}>
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E244B] leading-tight mb-5 sm:mb-6" style={{ fontFamily: "Manrope, sans-serif" }}>
-                    Strengthening Healthcare Through{" "}
-                    <span style={{
-                      background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    }}>
-                      Operational Excellence
-                    </span>
+                    {language === "en" ? (
+                      <>
+                        Strengthening Healthcare Through{" "}
+                        <span style={{
+                          background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text"
+                        }}>
+                          Operational Excellence
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        تعزيز الرعاية الصحية من خلال{" "}
+                        <span style={{
+                          background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text"
+                        }}>
+                          التميز التشغيلي
+                        </span>
+                      </>
+                    )}
                   </h2>
                 </Reveal>
                 <Reveal delay={0.2}>
                   <p className="text-base text-[#5E647A] leading-relaxed mb-5 sm:mb-6">
-                    Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies. We establish long-term strategic partnerships with internationally recognized pharmaceutical manufacturers to ensure the availability of safe, high-quality products.
+                    {t("aboutTeaser.desc")}
                   </p>
                 </Reveal>
                 <Reveal delay={0.3}>
                   <div className="space-y-2.5 sm:space-y-3 mb-7 sm:mb-8">
                     {[
-                      "Highest standards of quality and regulatory compliance",
-                      "Sustainable and highly scalable business model",
-                      "Adhering to international quality management best practices",
+                      t("aboutTeaser.bullet1"),
+                      t("aboutTeaser.bullet2"),
+                      t("aboutTeaser.bullet3"),
                     ].map((item) => (
                       <div key={item} className="flex items-center gap-3">
                         <CheckCircle2 className="w-5 h-5 text-[#5B43D6] flex-shrink-0" />
@@ -85,11 +109,12 @@ export default function HomePage() {
                 <Reveal delay={0.4}>
                   <div>
                     <Link href="/about" className="btn-primary">
-                      Read Our Story
-                      <ArrowRight className="w-4 h-4" />
+                      {t("aboutTeaser.cta")}
+                      <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                     </Link>
                   </div>
                 </Reveal>
+
               </div>
             </div>
           </div>
@@ -99,20 +124,36 @@ export default function HomePage() {
         <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden" style={{ background: "#F3F5FC" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal className="text-center mb-12 sm:mb-16">
-              <span className="section-tag mb-4 sm:mb-5">Areas of Expertise</span>
+              <span className="section-tag mb-4 sm:mb-5">{t("expertise.tag")}</span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E244B]" style={{ fontFamily: "Manrope, sans-serif" }}>
-                Our Primary{" "}
-                <span style={{
-                  background: "linear-gradient(135deg, #2B7DDC 0%, #28B7C7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}>
-                  Sectors
-                </span>
+                {language === "en" ? (
+                  <>
+                    Our Primary{" "}
+                    <span style={{
+                      background: "linear-gradient(135deg, #2B7DDC 0%, #28B7C7 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text"
+                    }}>
+                      Sectors
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    قطاعاتنا{" "}
+                    <span style={{
+                      background: "linear-gradient(135deg, #2B7DDC 0%, #28B7C7 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text"
+                    }}>
+                      الرئيسية
+                    </span>
+                  </>
+                )}
               </h2>
               <p className="text-base text-[#5E647A] max-w-xl mx-auto mt-4">
-                We supply and distribute pharmaceuticals through intelligent supply chain logistics, while expanding into growth-potential sectors.
+                {t("expertise.desc")}
               </p>
             </Reveal>
 
@@ -135,15 +176,15 @@ export default function HomePage() {
                       <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-[#5B43D6]" />
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-[#1E244B] mb-3" style={{ fontFamily: "Manrope, sans-serif" }}>
-                      Medical & Pharmaceutical Sector
+                      {t("expertise.sector1Title")}
                     </h3>
                     <p className="text-sm text-[#5E647A] leading-relaxed">
-                      Specializing in the importation, supply, and distribution of pharmaceuticals and medical supplies through an integrated and intelligent supply chain management system.
+                      {t("expertise.sector1Desc")}
                     </p>
                   </div>
                   <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#E4E7F2] flex items-center justify-between text-[#5B43D6] font-bold text-sm">
-                    <span>Quality Compliant</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <span>{t("expertise.sector1Stat")}</span>
+                    <ChevronRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                   </div>
                 </div>
               </Reveal>
@@ -166,15 +207,15 @@ export default function HomePage() {
                       <Users className="w-5 h-5 sm:w-6 sm:h-6 text-[#2B7DDC]" />
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-[#1E244B] mb-3" style={{ fontFamily: "Manrope, sans-serif" }}>
-                      Strategic Growth Sectors
+                      {t("expertise.sector2Title")}
                     </h3>
                     <p className="text-sm text-[#5E647A] leading-relaxed">
-                      Expanding our presence across high-potential sectors including Logistics and Freight Services, General Trading, Import & Export, as well as Industrial and Technology Sectors.
+                      {t("expertise.sector2Desc")}
                     </p>
                   </div>
                   <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#E4E7F2] flex items-center justify-between text-[#2B7DDC] font-bold text-sm">
-                    <span>Business Diversification</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <span>{t("expertise.sector2Stat")}</span>
+                    <ChevronRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                   </div>
                 </div>
               </Reveal>
@@ -182,8 +223,8 @@ export default function HomePage() {
 
             <Reveal className="text-center">
               <Link href="/expertise" className="btn-outline">
-                Explore All Sectors
-                <ArrowRight className="w-4 h-4" />
+                {t("expertise.cta")}
+                <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
               </Link>
             </Reveal>
           </div>
@@ -196,31 +237,47 @@ export default function HomePage() {
               {/* Left Column: Text & CTA */}
               <div>
                 <Reveal>
-                  <span className="section-tag mb-4 sm:mb-5">Why Zybiov</span>
+                  <span className="section-tag mb-4 sm:mb-5">{t("whyChooseUs.tag")}</span>
                 </Reveal>
                 <Reveal delay={0.1}>
                   <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1E244B] leading-tight mb-5 sm:mb-6" style={{ fontFamily: "Manrope, sans-serif" }}>
-                    Uncompromising Commitment to{" "}
-                    <span style={{
-                      background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    }}>
-                      Reliability & Trust
-                    </span>
+                    {language === "en" ? (
+                      <>
+                        Uncompromising Commitment to{" "}
+                        <span style={{
+                          background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}>
+                          Reliability & Trust
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        التزام راسخ بالـ{" "}
+                        <span style={{
+                          background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}>
+                          موثوقية والثقة
+                        </span>
+                      </>
+                    )}
                   </h2>
                 </Reveal>
                 <Reveal delay={0.2}>
                   <p className="text-base text-[#5E647A] leading-relaxed mb-7 sm:mb-8">
-                    We maintain a strong network of strategic partnerships with leading international manufacturers and suppliers, upholding the highest standards of legal and regulatory compliance.
+                    {t("whyChooseUs.desc")}
                   </p>
                 </Reveal>
                 <Reveal delay={0.3}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-7 sm:mb-8">
                     {[
-                      { title: "Global Partnerships", desc: "Leading global suppliers & manufacturers." },
-                      { title: "Full Compliance", desc: "Highest standards of legal & regulatory compliance." }
+                      { title: t("whyChooseUs.feat1Title"), desc: t("whyChooseUs.feat1Desc") },
+                      { title: t("whyChooseUs.feat2Title"), desc: t("whyChooseUs.feat2Desc") }
                     ].map((feat) => (
                       <div key={feat.title} className="rounded-xl border border-[#E4E7F2] p-4 sm:p-5 bg-[#FAFBFD]">
                         <p className="font-bold text-[#1E244B] mb-1">{feat.title}</p>
@@ -232,8 +289,8 @@ export default function HomePage() {
                 <Reveal delay={0.4}>
                   <div>
                     <Link href="/why-zybiov" className="btn-primary">
-                      Why Choose Us
-                      <ArrowRight className="w-4 h-4" />
+                      {t("whyChooseUs.cta")}
+                      <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                     </Link>
                   </div>
                 </Reveal>
@@ -250,8 +307,8 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 to-transparent" />
-                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
-                    <span className="text-white font-semibold text-xs sm:text-sm">Expert Team</span>
+                  <div className={cn("absolute bottom-3 sm:bottom-4", dir === "rtl" ? "right-3 sm:right-4" : "left-3 sm:left-4")}>
+                    <span className="text-white font-semibold text-xs sm:text-sm">{t("whyChooseUs.expertTeam")}</span>
                   </div>
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
@@ -263,8 +320,8 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 to-transparent" />
-                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3">
-                    <span className="text-white font-semibold text-[10px] sm:text-xs">Innovation</span>
+                  <div className={cn("absolute bottom-2 sm:bottom-3", dir === "rtl" ? "right-2 sm:right-3" : "left-2 sm:left-3")}>
+                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("whyChooseUs.innovation")}</span>
                   </div>
                 </div>
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
@@ -276,8 +333,8 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 to-transparent" />
-                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3">
-                    <span className="text-white font-semibold text-[10px] sm:text-xs">Research</span>
+                  <div className={cn("absolute bottom-2 sm:bottom-3", dir === "rtl" ? "right-2 sm:right-3" : "left-2 sm:left-3")}>
+                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("whyChooseUs.research")}</span>
                   </div>
                 </div>
               </Reveal>
@@ -298,28 +355,28 @@ export default function HomePage() {
             <Reveal>
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-5 sm:mb-6"
                 style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                Start a Conversation
+                {t("contactTeaser.tag")}
               </span>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-5 sm:mb-6" style={{ fontFamily: "Manrope, sans-serif" }}>
-                Ready to Strengthen Your Healthcare Supply Chain?
+                {t("contactTeaser.title")}
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-                Connect with our team to discuss partnership opportunities, supply logistics, or general trade inquiries.
+                {t("contactTeaser.desc")}
               </p>
             </Reveal>
             <Reveal delay={0.3}>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <Link href="/contact" className="btn-primary" style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}>
-                  Contact Us Now
-                  <ArrowRight className="w-4 h-4" />
+                  {t("contactTeaser.ctaContact")}
+                  <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                 </Link>
                 <Link href="/about" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:bg-white/10"
                   style={{ border: "2px solid rgba(255,255,255,0.3)", fontSize: "0.9375rem" }}>
-                  Learn More About Us
+                  {t("contactTeaser.ctaAbout")}
                 </Link>
               </div>
             </Reveal>
