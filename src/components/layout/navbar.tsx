@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -54,22 +53,22 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled || mobileOpen
-            ? "bg-white/95 backdrop-blur-md shadow-[0_2px_12px_rgba(30,36,75,0.06)] border-b border-[#E4E7F2]/60"
-            : "bg-transparent"
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-[0_2px_16px_rgba(30,36,75,0.05)] border-b border-[#E4E7F2]/60 py-2"
+            : "bg-transparent py-4"
         )}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[68px] sm:h-[76px]">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[76px] sm:h-[84px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="relative w-[90px] h-[34px] sm:w-[110px] sm:h-[40px] transition-opacity duration-300 group-hover:opacity-90">
+            <div className="relative w-[130px] h-[48px] sm:w-[170px] sm:h-[62px] transition-transform duration-300 group-hover:scale-[1.02]">
               <Image
                 src="/logo.png"
                 alt="Zybiov Multi-Activities Limited"
                 fill
-                className="object-contain mix-blend-multiply"
+                className="object-contain"
                 priority
-                sizes="(max-width: 640px) 90px, 110px"
+                sizes="(max-width: 640px) 130px, 170px"
               />
             </div>
           </Link>
@@ -83,7 +82,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative px-3.5 py-2 text-[14px] font-semibold transition-all duration-200 rounded-lg hover:text-[#5B43D6] hover:bg-[#5B43D6]/5",
+                    "relative px-4 py-2 text-[15px] font-semibold transition-all duration-200 rounded-lg hover:text-[#5B43D6] hover:bg-[#5B43D6]/5",
                     isActive ? "text-[#5B43D6]" : "text-[#1E244B]"
                   )}
                 >
@@ -91,7 +90,7 @@ export function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="activeNavUnderline"
-                      className="absolute bottom-0.5 left-3.5 right-3.5 h-0.5 bg-[#5B43D6] rounded-full"
+                      className="absolute bottom-0 h-0.5 bg-[#5B43D6] left-4 right-4 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -102,7 +101,7 @@ export function Navbar() {
 
           {/* CTA — desktop only */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link href="/contact" className="btn-primary text-sm py-2.5 px-5">
+            <Link href="/contact" className="btn-primary text-sm py-2.5 px-6">
               Contact Us
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -110,68 +109,99 @@ export function Navbar() {
 
           {/* Mobile menu toggle */}
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/5 transition-colors"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMobileOpen(true)}
+            className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/5 transition-colors"
+            aria-label="Open menu"
             aria-expanded={mobileOpen}
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <Menu className="w-6 h-6" />
           </button>
         </nav>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Right side slide-in Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-40 bg-white flex flex-col"
-            style={{ paddingTop: "68px" }}
-          >
-            <div className="flex flex-col gap-1 p-4 sm:p-6 flex-1 overflow-y-auto">
-              {navLinks.map((link, i) => {
-                const isActive = pathname === link.href;
-                return (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={cn(
-                        "flex items-center justify-between px-4 py-4 text-[17px] font-bold border-b border-[#E4E7F2] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5 rounded-xl transition-colors",
-                        isActive ? "text-[#5B43D6] bg-[#5B43D6]/5" : "text-[#1E244B]"
-                      )}
-                    >
-                      {link.label}
-                      {isActive && <span className="w-2 h-2 rounded-full bg-[#5B43D6]" />}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
-
+          <>
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-              className="p-4 sm:p-6 border-t border-[#E4E7F2] bg-[#FAFBFD]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 z-50 bg-[#1E244B]/40 backdrop-blur-sm lg:hidden"
+            />
+
+            {/* Sidebar Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-[340px] bg-white shadow-2xl flex flex-col h-full lg:hidden"
             >
-              <Link
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="btn-primary w-full justify-center"
-              >
-                Contact Us <ArrowRight className="w-4 h-4" />
-              </Link>
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-[#E4E7F2]">
+                <div className="relative w-[110px] h-[40px]">
+                  <Image
+                    src="/logo.png"
+                    alt="Zybiov"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="w-10 h-10 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/5 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="flex flex-col gap-2 p-6 flex-1 overflow-y-auto">
+                {navLinks.map((link, i) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={cn(
+                          "flex items-center justify-between px-4 py-3.5 text-[16px] font-bold rounded-xl transition-all duration-200",
+                          isActive
+                            ? "text-[#5B43D6] bg-[#5B43D6]/5"
+                            : "text-[#1E244B] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5"
+                        )}
+                      >
+                        {link.label}
+                        {isActive && <span className="w-2.5 h-2.5 rounded-full bg-[#5B43D6]" />}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Drawer Footer CTA */}
+              <div className="p-6 border-t border-[#E4E7F2] bg-[#FAFBFD]">
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="btn-primary w-full justify-center py-3 text-sm"
+                >
+                  Contact Us <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
