@@ -1,0 +1,128 @@
+"use client";
+
+import Image from "next/image";
+import { Reveal } from "@/components/animations/reveal";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+export function AspirationsSection() {
+  return (
+    <section
+      id="aspirations"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      style={{ background: "#F3F5FC" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #1E244B 0%, #2B3a7a 50%, #1a2d5a 100%)",
+            boxShadow: "0 40px 100px rgba(30,36,75,0.3)",
+          }}
+        >
+          {/* Background image overlay */}
+          <div className="absolute inset-0">
+            <Image
+              src="/lab-digital.png"
+              alt="Future of healthcare innovation"
+              fill
+              className="object-cover opacity-15"
+              sizes="100vw"
+            />
+          </div>
+
+          {/* Gradient overlays */}
+          <div className="absolute inset-0"
+            style={{ background: "linear-gradient(135deg, rgba(91,67,214,0.3) 0%, rgba(43,125,220,0.2) 50%, rgba(40,183,199,0.15) 100%)" }} />
+
+          {/* Decorative circles */}
+          <div className="absolute top-0 right-0 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full opacity-10"
+            style={{ background: "radial-gradient(circle, #5B43D6 0%, transparent 70%)", transform: "translate(20%, -30%)" }} />
+          <div className="absolute bottom-0 left-0 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full opacity-10"
+            style={{ background: "radial-gradient(circle, #28B7C7 0%, transparent 70%)", transform: "translate(-20%, 30%)" }} />
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+
+          {/* Content */}
+          <div className="relative z-10 py-14 sm:py-20 px-6 sm:px-10 lg:px-20">
+            <div className="max-w-4xl mx-auto text-center">
+              <Reveal>
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 sm:mb-8"
+                  style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#28B7C7] animate-pulse" />
+                  Future Aspirations
+                </span>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
+                  style={{ fontFamily: "Manrope, sans-serif" }}>
+                  Building a{" "}
+                  <span style={{
+                    background: "linear-gradient(135deg, #28B7C7 0%, #2B7DDC 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}>
+                    Healthier Future
+                  </span>
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.2}>
+                <p className="text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-12 text-white/80 max-w-3xl mx-auto">
+                  We aspire to strengthen our position as a trusted partner in the healthcare sector while continuously exploring promising opportunities across the industrial and logistics sectors. Through this strategic vision, we aim to establish ourselves as a diversified multi-activities company with a meaningful impact at both the regional and international levels.
+                </p>
+              </Reveal>
+
+              {/* Aspiration pillars */}
+              <Reveal delay={0.3}>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+                  {[
+                    { label: "Healthcare Leadership", sub: "Trusted partner in pharma & medical" },
+                    { label: "Regional Expansion", sub: "Meaningful impact at regional & international level" },
+                    { label: "Sector Diversification", sub: "Industrial, logistics & technology sectors" },
+                  ].map((pillar) => (
+                    <div
+                      key={pillar.label}
+                      className="rounded-2xl p-5 sm:p-6 text-center"
+                      style={{
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        backdropFilter: "blur(10px)",
+                      }}
+                    >
+                      <div className="w-2 h-2 rounded-full mx-auto mb-3" style={{ background: "linear-gradient(135deg, #5B43D6, #28B7C7)" }} />
+                      <p className="text-white font-bold text-sm mb-1">{pillar.label}</p>
+                      <p className="text-white/55 text-xs leading-relaxed">{pillar.sub}</p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.4}>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                  <Link
+                    href="/contact"
+                    className="btn-primary"
+                    style={{ background: "linear-gradient(135deg, #5B43D6, #2B7DDC)" }}
+                  >
+                    Get In Touch
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    href="/expertise"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-300 hover:bg-white/10"
+                    style={{ border: "2px solid rgba(255,255,255,0.3)", fontSize: "0.9375rem" }}
+                  >
+                    Our Expertise
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
