@@ -46,7 +46,7 @@ export function QuickActionsSection() {
           {/* Left Side: Stats info */}
           <div className="grid grid-cols-3 gap-4 sm:gap-8 w-full lg:w-auto flex-1">
             {miniStats.map((stat, i) => (
-              <Reveal key={i} delay={i * 0.1} className="text-center lg:text-left">
+              <Reveal key={i} delay={i * 0.1} className="text-center lg:text-start">
                 <div className="flex flex-col items-center lg:items-start">
                   <div className={cn("w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center mb-3 text-white", stat.gradient)}>
                     <stat.icon className="w-5 h-5" />

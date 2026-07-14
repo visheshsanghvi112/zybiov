@@ -71,10 +71,6 @@ export function StatsStrip() {
                 >
                   {stat.isText ? (
                     <span className="text-base sm:text-xl font-bold">{t(stat.valueKey!)}</span>
-                  ) : language === "ar" ? (
-                    <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold">
-                      {stat.value === 10 ? "١٠+" : stat.value === 500 ? "٥٠٠+" : "١٠٠+"}
-                    </span>
                   ) : (
                     <Counter value={Number(stat.value)} suffix={stat.suffix} />
                   )}
