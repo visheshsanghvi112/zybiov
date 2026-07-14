@@ -72,6 +72,7 @@ export const metadata: Metadata = {
 };
 
 import { PageLoader } from "@/components/ui/loader";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 
 export default function RootLayout({
   children,
@@ -92,6 +93,7 @@ export default function RootLayout({
         <PageLoader />
         <LanguageProvider>
           {children}
+          <CookieBanner />
         </LanguageProvider>
       </body>
     </html>

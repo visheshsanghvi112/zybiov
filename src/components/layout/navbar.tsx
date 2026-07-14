@@ -95,7 +95,7 @@ export function Navbar() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[80px] sm:h-[88px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="relative w-[160px] h-[58px] sm:w-[200px] sm:h-[72px] lg:w-[220px] lg:h-[80px] transition-transform duration-300 group-hover:scale-[1.03]">
+            <div className="relative w-[135px] h-[48px] sm:w-[170px] sm:h-[60px] md:w-[185px] md:h-[66px] lg:w-[200px] lg:h-[72px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
                 src="/logo.png"
                 alt={t("brandName")}
@@ -105,13 +105,13 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 160px, (max-width: 1024px) 200px, 220px"
+                sizes="(max-width: 640px) 135px, (max-width: 1024px) 170px, 200px"
               />
             </div>
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -119,7 +119,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative px-4 py-2 text-[15px] font-semibold transition-all duration-200 rounded-lg hover:text-[#5B43D6] hover:bg-[#5B43D6]/5",
+                    "relative px-2.5 xl:px-4 py-2 text-[14px] xl:text-[15px] font-semibold transition-all duration-200 rounded-lg hover:text-[#5B43D6] hover:bg-[#5B43D6]/5",
                     isActive ? "text-[#5B43D6]" : "text-[#1E244B]"
                   )}
                 >

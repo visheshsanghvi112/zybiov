@@ -217,7 +217,7 @@ export function ContactSection() {
                           onChange={handleChange}
                           required
                           placeholder={t("contactPage.placeholderName")}
-                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
+                          className="form-input !ps-11 !pe-4 text-start"
                         />
                       </div>
                     </div>
@@ -235,7 +235,7 @@ export function ContactSection() {
                           onChange={handleChange}
                           required
                           placeholder={t("contactPage.placeholderEmail")}
-                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
+                          className="form-input !ps-11 !pe-4 text-start"
                         />
                       </div>
                     </div>
@@ -252,7 +252,7 @@ export function ContactSection() {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder={t("contactPage.placeholderPhone")}
-                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
+                          className="form-input !ps-11 !pe-4 text-start"
                         />
                       </div>
                     </div>
@@ -269,7 +269,7 @@ export function ContactSection() {
                           value={formData.company}
                           onChange={handleChange}
                           placeholder={t("contactPage.placeholderCompany")}
-                          className={cn("form-input", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
+                          className="form-input !ps-11 !pe-4 text-start"
                         />
                       </div>
                     </div>
@@ -288,7 +288,7 @@ export function ContactSection() {
                           required
                           placeholder={t("contactPage.placeholderMessage")}
                           rows={5}
-                          className={cn("form-input resize-none", dir === "rtl" ? "pr-11 pl-4 text-right" : "pl-11 pr-4")}
+                          className="form-input resize-none !ps-11 !pe-4 !pt-3.5 text-start"
                       />
                     </div>
                   </div>
