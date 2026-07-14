@@ -71,6 +71,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { PageLoader } from "@/components/ui/loader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -87,6 +89,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <PageLoader />
         <LanguageProvider>
           {children}
         </LanguageProvider>

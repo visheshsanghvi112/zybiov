@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero";
 import { StatsStrip } from "@/components/sections/stats-strip";
 import { AspirationsSection } from "@/components/sections/aspirations";
+import { QuickActionsSection } from "@/components/sections/quick-actions";
 import { Reveal } from "@/components/animations/reveal";
 import Link from "next/link";
 import Image from "next/image";
@@ -389,6 +390,9 @@ export default function HomePage() {
 
         {/* ── Building a Healthier Future (Aspirations) ── */}
         <AspirationsSection />
+
+        {/* ── CTA Buttons & Mini Stats (Moved Down) ── */}
+        <QuickActionsSection />
 
         {/* ── Contact Teaser Banner ── */}
         <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden bg-[#1E244B] text-white">
