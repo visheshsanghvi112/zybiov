@@ -1,15 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, X } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
-import { cn } from "@/lib/utils";
 
 export function HeroSection() {
-  const { language, t, dir } = useLanguage();
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const { language, t } = useLanguage();
 
   // Slogan splitting for letter/word-by-word reveal animation
   const sloganText = language === "en" 
@@ -117,8 +113,7 @@ export function HeroSection() {
             duration: 0.9,
             ease: [0.16, 1, 0.3, 1]
           }}
-          onClick={() => setIsVideoOpen(true)}
-          className="relative w-full max-w-4xl aspect-[21/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_80px_rgba(91,67,214,0.18)] border-4 border-white/80 group cursor-pointer"
+          className="relative w-full max-w-4xl aspect-[21/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_80px_rgba(91,67,214,0.18)] border-4 border-white/80 group"
         >
           <Image
             src="/hero-lab.png"
@@ -131,62 +126,8 @@ export function HeroSection() {
           {/* Subtle gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
-
-          {/* Pulse Play Button Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative flex items-center justify-center">
-              <span className="absolute inline-flex h-20 w-20 rounded-full bg-[#5B43D6]/40 animate-ping opacity-75" />
-              <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#5B43D6] shadow-xl group-hover:scale-110 group-hover:bg-[#5B43D6] group-hover:text-white transition-all duration-300">
-                <Play className="w-6 h-6 fill-current translate-x-0.5" />
-              </div>
-            </div>
-          </div>
-
-          <div className={cn(
-            "absolute bottom-4 sm:bottom-6 text-white/90 text-xs sm:text-sm font-semibold tracking-wide bg-black/35 backdrop-blur-md px-4 py-2 rounded-xl flex items-center gap-2",
-            dir === "rtl" ? "right-4 sm:right-6" : "left-4 sm:left-6"
-          )}>
-            <span className="w-2 h-2 rounded-full bg-[#28B7C7] animate-pulse" />
-            {language === "en" ? "Watch Introduction Video" : "شاهد الفيديو التعريفي"}
-          </div>
         </motion.div>
       </div>
-
-      {/* Video Modal Overlay */}
-      <AnimatePresence>
-        {isVideoOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsVideoOpen(false)}
-            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-4xl aspect-video rounded-3xl overflow-hidden bg-black border border-white/10 shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setIsVideoOpen(false)}
-                className="absolute top-4 right-4 text-white/70 hover:text-white bg-black/40 hover:bg-black/60 p-2.5 rounded-full transition-all z-10 cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <iframe
-                src="https://www.youtube.com/embed/Rgd2S6wD1jE?autoplay=1"
-                title="Zybiov Corporate Presentation"
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
