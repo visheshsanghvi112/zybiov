@@ -66,8 +66,36 @@ body {
   min-height: 100vh;
 }
 
-html[lang="ar"] body, html.lang-ar body {
-  font-family: "Cairo", sans-serif;
+/* ─── Premium Arabic Support (RTL & Typography) ─── */
+html[lang="ar"],
+html.lang-ar,
+[dir="rtl"] {
+  font-family: "Cairo", "Tajawal", sans-serif !important;
+}
+
+/* Override letter spacing that breaks Arabic cursiveness */
+html[lang="ar"] *,
+html.lang-ar *,
+[dir="rtl"] * {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+}
+
+/* Adjust heading styles specifically for Arabic Cairo font scaling */
+html[lang="ar"] h1, html.lang-ar h1,
+html[lang="ar"] h2, html.lang-ar h2,
+html[lang="ar"] h3, html.lang-ar h3,
+html[lang="ar"] h4, html.lang-ar h4 {
+  font-family: "Cairo", "Tajawal", sans-serif !important;
+  line-height: 1.35 !important;
+  font-weight: 800 !important;
+}
+
+/* Correct line height globally for body text in Arabic */
+html[lang="ar"] p, html.lang-ar p,
+html[lang="ar"] span, html.lang-ar span,
+html[lang="ar"] a, html.lang-ar a {
+  line-height: 1.8 !important;
 }
 
 /* ─── Focus Ring ─── */
@@ -236,27 +264,13 @@ section { position: relative; }
   box-shadow: 0 0 0 3px rgba(91, 67, 214, 0.12);
 }
 
-/* ─── Page transition ─── */
+/* Page transition */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 main { animation: fadeIn 0.45s ease both; }
 
-/* ─── Smooth image load ─── */
+/* Smooth image load */
 img { transition: opacity 0.3s ease; }
-
-/* ─── Arabic (RTL) Customizations ─── */
-html.ar-mode,
-html.ar-mode body,
-html.ar-mode input,
-html.ar-mode textarea,
-html.ar-mode button,
-html.ar-mode select {
-  font-family: "Cairo", sans-serif !important;
-}
-
-html.ar-mode .section-tag {
-  letter-spacing: 0;
-}
 
