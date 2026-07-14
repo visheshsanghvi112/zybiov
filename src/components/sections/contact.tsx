@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Reveal } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
 import { Send, User, Mail, Phone, Building2, MessageSquare, MapPin, Globe } from "lucide-react";
-import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon } from "@/components/icons/social-icons";
+import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon, YoutubeIcon } from "@/components/icons/social-icons";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,7 @@ const socialLinks = [
   { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421", handle: "LinkedIn Profile" },
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd", handle: "@zybiov.ltd" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/18tCP3Y4zr/", handle: "Facebook Page" },
+  { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov", handle: "YouTube Channel" },
 ];
 
 export function ContactSection() {
@@ -130,8 +131,8 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">{language === "en" ? "Email" : "البريد الإلكتروني"}</p>
-                      <a href="mailto:musabkhalid53@gmail.com" className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
-                        musabkhalid53@gmail.com
+                      <a href="mailto:zybiov.ltd88@gmail.com" className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
+                        zybiov.ltd88@gmail.com
                       </a>
                     </div>
                   </div>

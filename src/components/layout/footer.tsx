@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "./language-context";
 import { cn } from "@/lib/utils";
-import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon } from "@/components/icons/social-icons";
+import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon, YoutubeIcon } from "@/components/icons/social-icons";
 
 const footerLinks = [
   { key: "nav.home", href: "/" },
@@ -20,6 +20,7 @@ const socialLinks = [
   { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421" },
   { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd" },
   { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/18tCP3Y4zr/" },
+  { icon: YoutubeIcon, label: "YouTube", href: "https://www.youtube.com/@Zybiov" },
 ];
 
 export function Footer() {
@@ -127,8 +128,8 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-white/55 text-sm">
                 <Mail className="w-4 h-4 text-[#5B43D6] flex-shrink-0 mt-0.5" />
-                <a href="mailto:musabkhalid53@gmail.com" className="hover:text-white transition-colors break-all">
-                  musabkhalid53@gmail.com
+                <a href="mailto:zybiov.ltd88@gmail.com" className="hover:text-white transition-colors break-all">
+                  zybiov.ltd88@gmail.com
                 </a>
               </li>
             </ul>
