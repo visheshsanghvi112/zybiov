@@ -16,6 +16,39 @@ const navLinks = [
   { key: "nav.contact", href: "/contact" },
 ];
 
+// Minimalist sliding capsule language toggle with fixed width to prevent layout shifts
+function LanguageToggle({ language, setLanguage }: { language: "en" | "ar", setLanguage: (l: "en" | "ar") => void }) {
+  return (
+    <div
+      onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+      className="relative w-[86px] h-[38px] bg-[#F0F2FA] rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-[#E4E7F2] select-none"
+    >
+      {/* Sliding Pill Indicator */}
+      <motion.div
+        layout
+        transition={{ type: "spring", stiffness: 350, damping: 25 }}
+        className="absolute top-[3px] bottom-[3px] w-[38px] bg-white rounded-full shadow-sm"
+        style={{
+          left: language === "en" ? "3px" : "calc(100% - 41px)"
+        }}
+      />
+      {/* Labels */}
+      <span className={cn(
+        "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
+        language === "en" ? "text-[#5B43D6]" : "text-[#8892A4]"
+      )}>
+        EN
+      </span>
+      <span className={cn(
+        "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
+        language === "ar" ? "text-[#5B43D6]" : "text-[#8892A4]"
+      )}>
+        عربي
+      </span>
+    </div>
+  );
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -105,13 +138,7 @@ export function Navbar() {
 
           {/* CTA & Language Toggle — desktop only */}
           <div className="hidden lg:flex items-center gap-4">
-            <button
-              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#E4E7F2]/80 text-[13px] font-bold text-[#1E244B] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5 transition-all duration-200 cursor-pointer"
-            >
-              <Globe className="w-4 h-4" />
-              <span>{language === "en" ? "العربية" : "English"}</span>
-            </button>
+            <LanguageToggle language={language} setLanguage={setLanguage} />
             <Link href="/contact" className="btn-primary text-sm py-2.5 px-6">
               {t("contactUs")}
               <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", dir === "rtl" && "rotate-180")} />
@@ -120,12 +147,7 @@ export function Navbar() {
 
           {/* Mobile menu toggle & Language Toggle */}
           <div className="lg:hidden flex items-center gap-2">
-            <button
-              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-              className="w-10 h-10 flex items-center justify-center rounded-xl border border-[#E4E7F2]/80 text-xs font-bold text-[#1E244B] hover:bg-[#5B43D6]/5 active:scale-95 transition-all cursor-pointer"
-            >
-              {language === "en" ? "عربي" : "EN"}
-            </button>
+            <LanguageToggle language={language} setLanguage={setLanguage} />
             <button
               onClick={() => setMobileOpen(true)}
               className="w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/8 transition-all duration-200 active:scale-95 cursor-pointer"
@@ -233,15 +255,12 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                className="p-5 border-t border-[#F0F2FA] bg-[#FAFBFD] space-y-3"
+                className="p-5 border-t border-[#F0F2FA] bg-[#FAFBFD] space-y-4"
               >
-                <button
-                  onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-                  className="flex items-center justify-center gap-2 w-full bg-white border border-[#E4E7F2] text-[#1E244B] font-bold text-[14px] py-3 px-6 rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer"
-                >
-                  <Globe className="w-4 h-4" />
-                  <span>{language === "en" ? "العربية" : "English"}</span>
-                </button>
+                <div className="flex items-center justify-between bg-white border border-[#E4E7F2] p-3 rounded-xl">
+                  <span className="text-xs font-bold text-[#5E647A]">{language === "en" ? "Change Language" : "تغيير اللغة"}</span>
+                  <LanguageToggle language={language} setLanguage={setLanguage} />
+                </div>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
