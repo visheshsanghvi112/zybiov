@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "./language-context";
 import { cn } from "@/lib/utils";
 import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon } from "@/components/icons/social-icons";
@@ -16,10 +16,10 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com", handle: "zybiov.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421", handle: "LinkedIn" },
-  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd", handle: "@zybiov.ltd" },
-  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/18tCP3Y4zr/", handle: "Facebook" },
+  { icon: GlobeIcon, label: "Website", href: "https://www.zybiov.com" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/in/zybiov-co-ltd-976298421" },
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/zybiov.ltd" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/share/18tCP3Y4zr/" },
 ];
 
 export function Footer() {
@@ -38,7 +38,7 @@ export function Footer() {
         {/* Top bar */}
         <div className="py-14 border-b border-white/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div>
             <div className="flex items-center gap-3 mb-5">
               <div className="bg-white px-5 py-2.5 rounded-xl inline-flex items-center justify-center shadow-md">
                 <div className="relative w-[130px] h-[48px]">
@@ -52,28 +52,16 @@ export function Footer() {
                 </div>
               </div>
             </div>
-            <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               {t("footer.desc")}
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((s) => (
-                <Link
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[#5B43D6] transition-all duration-200 hover:scale-110"
-                >
-                  <s.icon className="w-4 h-4 text-white" />
-                </Link>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">{t("footer.quickLinks")}</h3>
+            <h3 className="text-white font-bold text-xs sm:text-sm uppercase tracking-widest mb-5">
+              {t("footer.quickLinks")}
+            </h3>
             <ul className="space-y-3">
               {footerLinks.map((link) => (
                 <li key={link.href}>
@@ -93,37 +81,86 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
+          {/* Core Expertise */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">{t("footer.connect")}</h3>
-            <ul className="space-y-4">
-              {socialLinks.map((s) => (
-                <li key={s.label}>
+            <h3 className="text-white font-bold text-xs sm:text-sm uppercase tracking-widest mb-5">
+              {language === "en" ? "Our Expertise" : "خبرتنا وتخصصنا"}
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { title: t("expertise.sector1Title"), href: "/expertise" },
+                { title: t("expertise.sector2Title"), href: "/expertise" },
+                { title: t("expertise.sector3Title"), href: "/expertise" },
+              ].map((sector, idx) => (
+                <li key={idx}>
                   <Link
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-white/55 text-sm hover:text-white transition-colors duration-200 group"
+                    href={sector.href}
+                    className="text-white/55 text-sm hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                   >
-                    <span className="w-7 h-7 rounded-md bg-white/10 flex items-center justify-center group-hover:bg-[#5B43D6]/50 transition-colors">
-                      <s.icon className="w-3.5 h-3.5" />
-                    </span>
-                    {s.handle}
+                    <ArrowRight className={cn(
+                      "w-3 h-3 opacity-0 transition-all duration-200 text-[#28B7C7]",
+                      dir === "rtl" ? "rotate-180 translate-x-2 group-hover:translate-x-0" : "-translate-x-2 group-hover:translate-x-0",
+                      "group-hover:opacity-100"
+                    )} />
+                    {sector.title}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
+          {/* Contact details */}
+          <div>
+            <h3 className="text-white font-bold text-xs sm:text-sm uppercase tracking-widest mb-5">
+              {language === "en" ? "Corporate Info" : "معلومات الاتصال"}
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-white/55 text-sm">
+                <MapPin className="w-4 h-4 text-[#5B43D6] flex-shrink-0 mt-0.5" />
+                <span>Khartoum, Sudan</span>
+              </li>
+              <li className="flex items-start gap-3 text-white/55 text-sm">
+                <Phone className="w-4 h-4 text-[#28B7C7] flex-shrink-0 mt-0.5" />
+                <a href="tel:+249111909092" className="hover:text-white transition-colors">
+                  +249 111 909 092
+                </a>
+              </li>
+              <li className="flex items-start gap-3 text-white/55 text-sm">
+                <Mail className="w-4 h-4 text-[#5B43D6] flex-shrink-0 mt-0.5" />
+                <a href="mailto:musabkhalid53@gmail.com" className="hover:text-white transition-colors break-all">
+                  musabkhalid53@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Bottom */}
-        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} {t("brandName")}. {t("footer.allRights")}
-          </p>
-          <p className="text-white/30 text-xs">
-            {t("tagline")}
-          </p>
+        <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-center sm:text-left">
+            <p className="text-white/40 text-sm">
+              © {new Date().getFullYear()} {t("brandName")}. {t("footer.allRights")}
+            </p>
+            <p className="text-white/30 text-xs mt-1">
+              {t("tagline")}
+            </p>
+          </div>
+
+          {/* Social icons row on the bottom right */}
+          <div className="flex gap-3">
+            {socialLinks.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#5B43D6] hover:border-transparent transition-all duration-200 hover:scale-105"
+              >
+                <s.icon className="w-4 h-4 text-white" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
