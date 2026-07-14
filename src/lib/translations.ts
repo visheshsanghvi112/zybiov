@@ -10,7 +10,7 @@ export const translations = {
     contactUs: "Contact Us",
     readOurStory: "Read Our Story",
     exploreSectors: "Explore All Sectors",
-    whyChooseUs: "Why Choose Us",
+    whyChooseUsLabel: "Why Choose Us",
     getInTouch: "Get In Touch",
     learnMore: "Learn More About Us",
     sudanCoverage: "Sudan — Regional & International Operations",
@@ -121,7 +121,7 @@ export const translations = {
       v5Desc: "Exceeding customer expectations is at the heart of everything we do.",
     },
 
-    // Expertise page
+    // Expertise page + homepage teaser
     expertise: {
       badge: "Areas of Expertise",
       title: "What We",
@@ -152,9 +152,38 @@ export const translations = {
       growthLabel: "Strategic Growth Sectors",
       growthText: "Expanding our presence across high-potential sectors including Logistics and Freight Services, General Trading, Import & Export, as well as Industrial and Technology Sectors.",
       growthDivers: "Business Diversification",
+      // Homepage teaser keys
+      tag: "Areas of Expertise",
+      desc: "From pharmaceuticals to medical equipment and nutritional supplements — we deliver internationally certified healthcare solutions worldwide.",
+      sector1Title: "Pharmaceutical Products",
+      sector1Desc: "We specialize in the sourcing, importation, and distribution of high-quality pharmaceutical products from globally recognized manufacturers. Our portfolio includes branded and generic medicines, ensuring reliable access to safe, effective, and internationally certified healthcare solutions for hospitals, pharmacies, clinics, and healthcare providers.",
+      sector1Stat: "Quality Assured",
+      sector1Tags: ["Branded & Generic", "Importation", "Distribution", "Quality Control"],
+      sector2Title: "Medical Equipment & Healthcare Solutions",
+      sector2Desc: "We provide comprehensive procurement and import solutions for advanced medical equipment, diagnostic devices, laboratory instruments, hospital furniture, surgical equipment, and healthcare technologies. Our commitment is to deliver innovative, reliable, and internationally certified solutions that enhance patient care and clinical performance.",
+      sector2Stat: "Advanced Technology",
+      sector2Tags: ["Diagnostic Devices", "Surgical Equipment", "Lab Instruments", "Imaging"],
+      sector3Title: "Nutritional Supplements",
+      sector3Desc: "We supply premium nutritional supplements sourced from trusted international manufacturers, offering a wide range of vitamins, minerals, herbal formulations, sports nutrition, and wellness products. Our focus is on delivering safe, high-quality, and scientifically developed supplements that support health, nutrition, and overall well-being.",
+      sector3Stat: "Premium Quality",
+      sector3Tags: ["Vitamins & Minerals", "Herbal Formulas", "Sports Nutrition", "Wellness"],
+      cta: "Explore All Areas",
     },
 
-    // Why Zybiov
+    // Why Zybiov (page) + homepage whyChooseUs teaser
+    whyChooseUs: {
+      tag: "Why Zybiov",
+      desc: "We maintain a strong network of strategic partnerships with leading international manufacturers and suppliers, upholding the highest standards of legal and regulatory compliance.",
+      feat1Title: "Global Partnerships",
+      feat1Desc: "Leading global suppliers & manufacturers.",
+      feat2Title: "Full Compliance",
+      feat2Desc: "Highest standards of legal & regulatory compliance.",
+      cta: "Why Choose Us",
+      expertTeam: "Expert Team",
+      innovation: "Digital Innovation",
+      research: "Advanced Research",
+    },
+
     why: {
       badge: "Why Zybiov",
       title: "What Sets Us",
@@ -183,16 +212,44 @@ export const translations = {
 
     // Aspirations
     aspirations: {
-      badge: "Future Aspirations",
-      title: "Building a",
+      badge: "Our Vision",
+      tag: "Our Vision",
+      title: "Building a Healthier Future",
       titleAccent: "Healthier Future",
-      desc: "We aspire to strengthen our position as a trusted partner in the healthcare sector while continuously exploring promising opportunities across the industrial and logistics sectors. Through this strategic vision, we aim to establish ourselves as a diversified multi-activities company with a meaningful impact at both the regional and international levels.",
-      p1Label: "Healthcare Leadership",
-      p1Sub: "Trusted partner in pharma & medical",
-      p2Label: "Regional Expansion",
-      p2Sub: "Meaningful impact at regional & international level",
-      p3Label: "Sector Diversification",
-      p3Sub: "Industrial, logistics & technology sectors",
+      desc: "We aspire to become a trusted global healthcare company by expanding our portfolio of pharmaceutical products, medical equipment, and nutritional supplements. Through strategic partnerships, innovation, and an unwavering commitment to quality, we aim to improve access to reliable healthcare solutions while creating lasting value for our customers, partners, and communities worldwide.",
+      p1Label: "Global Expansion",
+      p1Sub: "Expanding into new regional and international markets",
+      p2Label: "Innovation & Quality",
+      p2Sub: "Internationally certified products, highest safety standards",
+      p3Label: "Sustainable Growth",
+      p3Sub: "Diversified healthcare business, long-term value",
+      pillar1Title: "Global Expansion",
+      pillar1Desc: "Expanding our presence into new regional and international markets through strategic partnerships.",
+      pillar2Title: "Innovation & Quality",
+      pillar2Desc: "Delivering internationally certified healthcare products that meet the highest standards of quality and safety.",
+      pillar3Title: "Sustainable Growth",
+      pillar3Desc: "Building a diversified healthcare business focused on long-term value, trust, and continuous improvement.",
+      ctaGetInTouch: "Get In Touch",
+      ctaExpertise: "Explore Our Expertise",
+    },
+
+    // Page-level headers
+    aboutPage: {
+      tag: "About Us",
+      title: "About Zybiov",
+      desc: "Discover who we are, what drives us, and how we are strengthening healthcare through quality, compliance, and operational excellence.",
+    },
+
+    expertisePage: {
+      tag: "Our Expertise",
+      title: "Areas of Expertise",
+      desc: "Deep expertise across pharmaceutical distribution and high-potential growth sectors, backed by international standards.",
+    },
+
+    whyPage: {
+      tag: "Why Zybiov",
+      title: "Why Choose Zybiov",
+      desc: "Discover what sets us apart — from global partnerships and professional management to our unwavering commitment to compliance and trust.",
     },
 
     // Contact Us & Forms
@@ -231,8 +288,54 @@ export const translations = {
       ctaBtnLearn: "Learn More About Us",
     },
 
+    // Contact Page namespace (used by contact.tsx & contact/page.tsx)
+    contactPage: {
+      tag: "Connect With Us",
+      desc: "Have questions about our distribution networks or want to partner with us? Reach out directly.",
+      infoTitle: "Get in Touch",
+      locationLabel: "Location",
+      locationValue: "Khartoum, Sudan",
+      followUs: "Follow Us",
+      successTitle: "Message Sent!",
+      successDesc: "Thank you for reaching out. We'll get back to you shortly.",
+      formTitle: "Send a Message",
+      labelName: "Full Name *",
+      labelEmail: "Email Address *",
+      labelPhone: "Phone Number",
+      labelCompany: "Company / Organization",
+      labelMessage: "Message *",
+      placeholderName: "Your full name",
+      placeholderEmail: "your@email.com",
+      placeholderPhone: "+249 ...",
+      placeholderCompany: "Your company name",
+      placeholderMessage: "Tell us about your needs or inquiry...",
+      btnSend: "Send Message",
+    },
+
+    // About Teaser (homepage)
+    aboutTeaser: {
+      tag: "About Us",
+      floatBadgeTitle: "Reliable Supply Chain",
+      floatBadgeDesc: "Connecting global quality with local needs",
+      desc: "Zybiov Multi-Activities Limited is a leading company specializing in the importation and distribution of pharmaceuticals and medical supplies, committed to delivering integrated healthcare solutions through quality and operational excellence.",
+      bullet1: "Long-term partnerships with global manufacturers",
+      bullet2: "Integrated supply chain for hospitals & pharmacies",
+      bullet3: "International best practices in quality management",
+      cta: "Learn More About Us",
+    },
+
+    // Contact Teaser (homepage)
+    contactTeaser: {
+      tag: "Start a Conversation",
+      title: "Ready to Strengthen Your Healthcare Supply Chain?",
+      desc: "Connect with our team to discuss partnership opportunities, supply logistics, or general trade inquiries.",
+      ctaContact: "Contact Us Now",
+      ctaAbout: "Learn More About Us",
+    },
+
     // Footer
     footer: {
+      tagline: "Quality in Every Step Toward Better Healthcare.",
       desc: "Quality in Every Step Toward Better Healthcare. A leading company specializing in the importation and distribution of pharmaceuticals and medical supplies.",
       quickLinks: "Quick Links",
       connect: "Connect",
@@ -248,7 +351,7 @@ export const translations = {
     contactUs: "اتصل بنا",
     readOurStory: "اقرأ قصتنا",
     exploreSectors: "استكشف جميع القطاعات",
-    whyChooseUs: "لماذا تختارنا",
+    whyChooseUsLabel: "لماذا تختارنا",
     getInTouch: "تواصل معنا",
     learnMore: "تعرف علينا أكثر",
     sudanCoverage: "السودان — العمليات الإقليمية والدولية",
@@ -359,7 +462,7 @@ export const translations = {
       v5Desc: "تجاوز توقعات عملائنا وشركائنا يقع في قلب كل ما نقوم به.",
     },
 
-    // Expertise page
+    // Expertise page + homepage teaser
     expertise: {
       badge: "مجالات الخبرة",
       title: "تخصصاتنا",
@@ -390,9 +493,38 @@ export const translations = {
       growthLabel: "قطاعات النمو الاستراتيجي",
       growthText: "توسيع تواجدنا في القطاعات ذات النمو المرتفع بما في ذلك الخدمات اللوجستية، التجارة العامة، الاستيراد والتصدير، والقطاعات الصناعية والتكنولوجية.",
       growthDivers: "تنويع الأعمال الاستراتيجية",
+      // Homepage teaser keys
+      tag: "مجالات الخبرة",
+      desc: "من الأدوية إلى الأجهزة الطبية والمكملات الغذائية — نقدم حلول رعاية صحية معتمدة دولياً حول العالم.",
+      sector1Title: "المنتجات الدوائية",
+      sector1Desc: "نتخصص في توريد واستيراد وتوزيع منتجات دوائية عالية الجودة من مصنعين عالميين معترف بهم. تشمل محفظتنا الأدوية المبتكرة والجنيسية، مما يضمن وصولاً موثوقاً إلى حلول رعاية صحية آمنة وفعالة ومعتمدة دولياً للمستشفيات والصيدليات والعيادات.",
+      sector1Stat: "جودة مضمونة",
+      sector1Tags: ["مبتكرة وجنيسية", "استيراد", "توزيع", "رقابة جودة"],
+      sector2Title: "الأجهزة الطبية وحلول الرعاية الصحية",
+      sector2Desc: "نقدم حلول شاملة لاستيراد وشراء الأجهزة الطبية المتقدمة وأجهزة التشخيص والمعدات المختبرية وأثاث المستشفيات والمعدات الجراحية وتقنيات الرعاية الصحية. التزامنا هو تقديم حلول مبتكرة وموثوقة ومعتمدة دولياً.",
+      sector2Stat: "تقنية متقدمة",
+      sector2Tags: ["أجهزة تشخيص", "معدات جراحية", "معدات مختبرية", "تصوير طبي"],
+      sector3Title: "المكملات الغذائية",
+      sector3Desc: "نوفر مكملات غذائية فاخرة من مصنعين دوليين موثوقين، بما يشمل مجموعة واسعة من الفيتامينات والمعادن والتركيبات العشبية وتغذية رياضيين ومنتجات العافية. تركيزنا على تقديم مكملات آمنة وعالية الجودة.",
+      sector3Stat: "جودة فاخرة",
+      sector3Tags: ["فيتامينات", "تركيبات عشبية", "تغذية رياضية", "العافية"],
+      cta: "استكشف جميع المجالات",
     },
 
-    // Why Zybiov
+    // Why Zybiov (page) + homepage whyChooseUs teaser
+    whyChooseUs: {
+      tag: "لماذا زيبوف",
+      desc: "نحافظ على شبكة قوية من الشراكات الاستراتيجية مع كبار المصنعين والموردين الدوليين، مع الالتزام بأعلى معايير الامتثال القانوني والتنظيمي.",
+      feat1Title: "شراكات عالمية",
+      feat1Desc: "موردون ومصنعون عالميون رائدون.",
+      feat2Title: "امتثال كامل",
+      feat2Desc: "أعلى معايير الامتثال القانوني والتنظيمي.",
+      cta: "لماذا تختارنا",
+      expertTeam: "فريق الخبراء",
+      innovation: "الابتكار الرقمي",
+      research: "البحث المتقدم",
+    },
+
     why: {
       badge: "لماذا زيبوف",
       title: "ما الذي",
@@ -421,16 +553,44 @@ export const translations = {
 
     // Aspirations
     aspirations: {
-      badge: "تطلعاتنا المستقبلية",
-      title: "بناء مستقبل",
+      badge: "رؤيتنا",
+      tag: "رؤيتنا",
+      title: "بناء مستقبل أكثر صحة",
       titleAccent: "أكثر صحة",
-      desc: "نطمح إلى تعزيز مكانتنا كشريك موثوق به في قطاع الرعاية الصحية مع استكشاف الفرص الواعدة باستمرار في القطاعات الصناعية واللوجستية والخدمية. ونهدف من خلال هذه الرؤية الاستراتيجية إلى ترسيخ مكانتنا كشركة متعددة الأنشطة ذات تأثير إيجابي ملموس محلياً وإقليمياً ودولياً.",
-      p1Label: "الريادة في الرعاية الصحية",
-      p1Sub: "شريك موثوق به في قطاع الأدوية والمستلزمات الطبية",
-      p2Label: "التوسع الإقليمي والدولي",
-      p2Sub: "تأثير إيجابي ملموس على المستويين الإقليمي والدولي",
-      p3Label: "تنويع وتطوير القطاعات",
-      p3Sub: "القطاعات الصناعية واللوجستية والتكنولوجية المتنوعة",
+      desc: "نطمح إلى أن نصبح شركة رعاية صحية عالمية موثوقة من خلال توسيع محفظتنا من المنتجات الدوائية والأجهزة الطبية والمكملات الغذائية. من خلال الشراكات الاستراتيجية والابتكار والالتزام بالجودة، نسعى لتحسين الوصول إلى حلول رعاية صحية موثوقة.",
+      p1Label: "التوسع العالمي",
+      p1Sub: "التوسع في أسواق إقليمية ودولية جديدة",
+      p2Label: "الابتكار والجودة",
+      p2Sub: "منتجات معتمدة دولياً، أعلى معايير السلامة والجودة",
+      p3Label: "النمو المستدام",
+      p3Sub: "أعمال رعاية صحية متنوعة، قيمة طويلة الأمد",
+      pillar1Title: "التوسع العالمي",
+      pillar1Desc: "توسيع تواجدنا في أسواق إقليمية ودولية جديدة من خلال الشراكات الاستراتيجية.",
+      pillar2Title: "الابتكار والجودة",
+      pillar2Desc: "تقديم منتجات رعاية صحية معتمدة دولياً تلبي أعلى معايير الجودة والسلامة.",
+      pillar3Title: "النمو المستدام",
+      pillar3Desc: "بناء أعمال رعاية صحية متنوعة تركز على القيمة طويلة الأمد والثقة والتحسين المستمر.",
+      ctaGetInTouch: "تواصل معنا",
+      ctaExpertise: "استكشف مجالات خبرتنا",
+    },
+
+    // Page-level headers
+    aboutPage: {
+      tag: "من نحن",
+      title: "حول زيبوف",
+      desc: "اكتشف من نحن، وما الذي يحركنا، وكيف نعمل على تعزيز الرعاية الصحية من خلال الجودة والامتثال والتميز التشغيلي.",
+    },
+
+    expertisePage: {
+      tag: "مجالات الخبرة",
+      title: "مجالات الخبرة",
+      desc: "خبرة عميقة في توزيع الأدوية والقطاعات الواعدة ذات إمكانات النمو العالية، مدعومة بالمعايير الدولية.",
+    },
+
+    whyPage: {
+      tag: "لماذا زيبوف",
+      title: "لماذا تختار زيبوف",
+      desc: "اكتشف ما يميزنا — من الشراكات العالمية والإدارة المهنية إلى التزامنا الراسخ بالامتثال والثقة.",
     },
 
     // Contact Us & Forms
@@ -469,8 +629,54 @@ export const translations = {
       ctaBtnLearn: "تعرف على المزيد عنا",
     },
 
+    // Contact Page namespace (Arabic)
+    contactPage: {
+      tag: "تواصل معنا",
+      desc: "هل لديك استفسارات حول شبكات التوزيع الخاصة بنا أو ترغب في الشراكة معنا؟ تواصل معنا مباشرة.",
+      infoTitle: "معلومات الاتصال",
+      locationLabel: "الموقع",
+      locationValue: "الخرطوم، السودان",
+      followUs: "تابعنا على",
+      successTitle: "تم إرسال الرسالة بنجاح!",
+      successDesc: "شكرًا لتواصلك معنا. سنقوم بالرد عليك في أقرب وقت ممكن.",
+      formTitle: "أرسل رسالة",
+      labelName: "الاسم الكامل *",
+      labelEmail: "البريد الإلكتروني *",
+      labelPhone: "رقم الهاتف",
+      labelCompany: "الشركة / المؤسسة",
+      labelMessage: "الرسالة *",
+      placeholderName: "اسمك الكامل",
+      placeholderEmail: "name@example.com",
+      placeholderPhone: "+249 ...",
+      placeholderCompany: "اسم شركتك أو مؤسستك",
+      placeholderMessage: "أخبرنا بالتفصيل عن احتياجاتك أو استفسارك...",
+      btnSend: "إرسال الرسالة",
+    },
+
+    // About Teaser (homepage)
+    aboutTeaser: {
+      tag: "من نحن",
+      floatBadgeTitle: "سلسلة توريد موثوقة",
+      floatBadgeDesc: "ربط الجودة العالمية باحتياجات الرعاية الصحية المحلية",
+      desc: "شركة زيبوف للأنشطة المتعددة المحدودة شركة رائدة متخصصة في استيراد وتوزيع الأدوية والمستلزمات الطبية، وتلتزم بتقديم حلول رعاية صحية متكاملة من خلال التميز في الجودة والعمليات التشغيلية.",
+      bullet1: "شراكات استراتيجية طويلة الأجل مع المصنعين الدوليين",
+      bullet2: "سلسلة توريد متكاملة للمستشفيات والصيدليات",
+      bullet3: "أفضل الممارسات الدولية في إدارة الجودة",
+      cta: "تعرف علينا أكثر",
+    },
+
+    // Contact Teaser (homepage)
+    contactTeaser: {
+      tag: "ابدأ المحادثة معنا",
+      title: "هل أنت مستعد لتعزيز سلسلة توريد الرعاية الصحية الخاصة بك؟",
+      desc: "تواصل مع فريقنا لمناقشة فرص الشراكة أو اللوجستيات أو الاستفسارات التجارية العامة.",
+      ctaContact: "اتصل بنا الآن",
+      ctaAbout: "تعرف على المزيد عنا",
+    },
+
     // Footer
     footer: {
+      tagline: "الجودة في كل خطوة نحو رعاية صحية أفضل.",
       desc: "الجودة في كل خطوة نحو رعاية صحية أفضل. شركة رائدة متخصصة في استيراد وتوزيع الأدوية والمستلزمات الطبية في المنطقة وخارجها.",
       quickLinks: "روابط سريعة",
       connect: "روابط التواصل",

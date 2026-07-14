@@ -251,7 +251,7 @@ export function Navbar() {
                   <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                 </Link>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+249111909092"
                   className="flex items-center justify-center gap-2 w-full text-[14px] font-medium text-[#5B6790] hover:text-[#5B43D6] transition-colors duration-200"
                 >
                   <Phone className="w-3.5 h-3.5" />
