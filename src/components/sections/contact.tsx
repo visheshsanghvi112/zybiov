@@ -115,6 +115,28 @@ export function ContactSection() {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Phone className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">{language === "en" ? "Phone" : "الهاتف"}</p>
+                      <a href="tel:+249111909092" className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
+                        +249 111 909 092
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Mail className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-white/60 text-[10px] sm:text-xs mb-0.5">{language === "en" ? "Email" : "البريد الإلكتروني"}</p>
+                      <a href="mailto:musabkhalid53@gmail.com" className="text-white text-xs sm:text-sm font-medium hover:text-[#28B7C7] transition-colors">
+                        musabkhalid53@gmail.com
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Globe className="w-4 h-4 text-white" />
                     </div>
                     <div>
