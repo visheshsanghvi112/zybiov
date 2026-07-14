@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, X } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   const { language, t, dir } = useLanguage();
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   // Slogan splitting for letter/word-by-word reveal animation
   const sloganText = language === "en" 
@@ -76,27 +79,19 @@ export function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Animated Slogan */}
+        {/* Hero Slogan: Word-by-word reveal */}
         <motion.h1
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-tight mb-6 max-w-4xl text-[#1E244B]"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#1E244B] tracking-tight max-w-4xl mb-6 leading-[1.15] sm:leading-[1.15]"
           style={{ fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}
         >
-          {words.map((word, i) => (
+          {words.map((word, index) => (
             <motion.span
-              key={i}
+              key={index}
               variants={wordVariants}
-              className="inline-block mr-2 md:mr-3"
-              style={{
-                background: i >= (words.length - 3) 
-                  ? "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)" 
-                  : "none",
-                WebkitBackgroundClip: i >= (words.length - 3) ? "text" : "none",
-                WebkitTextFillColor: i >= (words.length - 3) ? "transparent" : "inherit",
-                backgroundClip: i >= (words.length - 3) ? "text" : "none",
-              }}
+              className="inline-block mr-[0.25em] rtl:ml-[0.25em] rtl:mr-0"
             >
               {word}
             </motion.span>
@@ -122,7 +117,8 @@ export function HeroSection() {
             duration: 0.9,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="relative w-full max-w-4xl aspect-[21/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_80px_rgba(91,67,214,0.18)] border-4 border-white/80 group"
+          onClick={() => setIsVideoOpen(true)}
+          className="relative w-full max-w-4xl aspect-[21/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_80px_rgba(91,67,214,0.18)] border-4 border-white/80 group cursor-pointer"
         >
           <Image
             src="/hero-lab.png"
@@ -135,8 +131,62 @@ export function HeroSection() {
           {/* Subtle gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
+
+          {/* Pulse Play Button Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative flex items-center justify-center">
+              <span className="absolute inline-flex h-20 w-20 rounded-full bg-[#5B43D6]/40 animate-ping opacity-75" />
+              <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#5B43D6] shadow-xl group-hover:scale-110 group-hover:bg-[#5B43D6] group-hover:text-white transition-all duration-300">
+                <Play className="w-6 h-6 fill-current translate-x-0.5" />
+              </div>
+            </div>
+          </div>
+
+          <div className={cn(
+            "absolute bottom-4 sm:bottom-6 text-white/90 text-xs sm:text-sm font-semibold tracking-wide bg-black/35 backdrop-blur-md px-4 py-2 rounded-xl flex items-center gap-2",
+            dir === "rtl" ? "right-4 sm:right-6" : "left-4 sm:left-6"
+          )}>
+            <span className="w-2 h-2 rounded-full bg-[#28B7C7] animate-pulse" />
+            {language === "en" ? "Watch Introduction Video" : "شاهد الفيديو التعريفي"}
+          </div>
         </motion.div>
       </div>
+
+      {/* Video Modal Overlay */}
+      <AnimatePresence>
+        {isVideoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsVideoOpen(false)}
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-4xl aspect-video rounded-3xl overflow-hidden bg-black border border-white/10 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsVideoOpen(false)}
+                className="absolute top-4 right-4 text-white/70 hover:text-white bg-black/40 hover:bg-black/60 p-2.5 rounded-full transition-all z-10 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <iframe
+                src="https://www.youtube.com/embed/Rgd2S6wD1jE?autoplay=1"
+                title="Zybiov Corporate Presentation"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
