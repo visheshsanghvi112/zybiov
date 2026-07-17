@@ -101,7 +101,7 @@ export function Navbar() {
                 alt={t("brandName")}
                 fill
                 className={cn(
-                  "object-contain",
+                  "object-contain mix-blend-multiply",
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
@@ -150,7 +150,7 @@ export function Navbar() {
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <button
               onClick={() => setMobileOpen(true)}
-              className="w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/8 transition-all duration-200 active:scale-95 cursor-pointer"
+              className="w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/10 transition-all duration-200 active:scale-95 cursor-pointer"
               aria-label={t("nav.openMenu")}
               aria-expanded={mobileOpen}
             >
@@ -196,7 +196,7 @@ export function Navbar() {
                     alt={t("brandShort")}
                     fill
                     className={cn(
-                      "object-contain",
+                      "object-contain mix-blend-multiply",
                       dir === "rtl" ? "object-right" : "object-left"
                     )}
                     priority

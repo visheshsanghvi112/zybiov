@@ -39,7 +39,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[90dvh] flex flex-col items-center justify-center overflow-hidden py-24 sm:py-32"
+      className="relative min-h-[90dvh] flex flex-col items-center justify-center overflow-hidden py-24 sm:py-32 pt-[104px] sm:pt-[120px]"
       style={{
         background: "linear-gradient(180deg, #FFFFFF 0%, #F3F5FC 70%, #EEF1FB 100%)",
       }}

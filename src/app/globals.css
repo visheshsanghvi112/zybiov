@@ -192,15 +192,18 @@ section { position: relative; }
   border-radius: 14px;
   font-weight: 600;
   font-size: 0.9375rem;
+  line-height: 1.25;
   transition: all 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
   box-shadow: 0 4px 16px rgba(91, 67, 214, 0.28);
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 @media (min-width: 640px) {
   .btn-primary { padding: 0.875rem 2rem; }
@@ -219,14 +222,17 @@ section { position: relative; }
   border-radius: 14px;
   font-weight: 600;
   font-size: 0.9375rem;
+  line-height: 1.25;
   transition: all 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
   border: 2px solid var(--primary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 @media (min-width: 640px) {
   .btn-outline { padding: 0.875rem 2rem; }

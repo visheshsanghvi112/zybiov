@@ -298,10 +298,7 @@ export function ContactSection() {
                     type="submit"
                     whileHover={{ scale: 1.01, boxShadow: "0 12px 36px rgba(91,67,214,0.4)" }}
                     whileTap={{ scale: 0.99 }}
-                    className={cn(
-                      "btn-primary justify-center mt-2 w-full sm:w-auto",
-                      dir === "rtl" ? "self-end" : "self-start"
-                    )}
+                    className="btn-primary justify-center mt-2 w-full sm:w-auto sm:self-start"
                     id="contact-submit"
                   >
                     {t("contactPage.btnSend")}

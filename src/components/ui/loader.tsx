@@ -85,7 +85,7 @@ export function PageLoader() {
             </motion.p>
           </div>
 
-          <style jsx global>{`
+          <style>{`
             @keyframes draw {
               to {
                 stroke-dashoffset: 0;

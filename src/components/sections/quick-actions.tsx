@@ -68,7 +68,7 @@ export function QuickActionsSection() {
               {t("hero.btnExpertise")}
               <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
             </Link>
-            <Link href="/about" className="btn-outline py-3.5 px-7 border-2 hover:bg-[#1E244B]/5">
+            <Link href="/about" className="btn-outline py-3.5 px-7 hover:bg-[#1E244B]/5">
               {t("hero.btnAbout")}
             </Link>
           </Reveal>

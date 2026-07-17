@@ -41,16 +41,14 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div className="bg-white px-5 py-2.5 rounded-xl inline-flex items-center justify-center shadow-md">
-                <div className="relative w-[130px] h-[48px]">
-                  <Image
-                    src="/logo.png"
-                    alt={t("brandName")}
-                    fill
-                    className="object-contain"
-                    sizes="130px"
-                  />
-                </div>
+              <div className="relative w-[130px] h-[48px]">
+                <Image
+                  src="/logo.png"
+                  alt={t("brandName")}
+                  fill
+                  className="object-contain mix-blend-screen"
+                  sizes="130px"
+                />
               </div>
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
