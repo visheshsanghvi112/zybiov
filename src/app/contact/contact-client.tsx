@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { ContactSection } from "@/components/sections/contact";
 import { useLanguage } from "@/components/layout/language-context";
 import Image from "next/image";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export function ContactClientPage() {
   const { t, language } = useLanguage();
@@ -41,7 +42,7 @@ export function ContactClientPage() {
           </div>
 
           {/* Subtle patterns */}
-          <div className="absolute inset-0 pointer-events-none opacity-40 z-10"
+          <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-10"
             style={{
               backgroundImage: "radial-gradient(var(--primary) 1px, transparent 1px)",
               backgroundSize: "32px 32px",
@@ -49,6 +50,10 @@ export function ContactClientPage() {
           />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
+            <Breadcrumb
+              items={[{ label: language === "en" ? "Contact Us" : "تواصل معنا" }]}
+              className="justify-center"
+            />
             <span className="section-tag mb-5">{t("contactPage.tag")}</span>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-4"

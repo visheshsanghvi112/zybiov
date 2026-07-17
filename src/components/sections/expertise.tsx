@@ -138,7 +138,7 @@ export function ExpertiseSection() {
                       src={sec.image}
                       alt={sec.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-103"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />

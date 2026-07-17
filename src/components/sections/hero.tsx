@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   const { language, t } = useLanguage();
@@ -99,10 +102,26 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.85 }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-base sm:text-lg leading-relaxed text-[#5E647A] max-w-2xl mb-10"
+          className="text-base sm:text-lg leading-relaxed text-[#5E647A] max-w-2xl mb-8"
         >
           {t("hero.desc")}
         </motion.p>
+
+        {/* Hero CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.6 }}
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12"
+        >
+          <Link href="/expertise" className="btn-primary text-sm sm:text-base">
+            {t("hero.btnExpertise")}
+            <ArrowRight className={cn("w-4 h-4", language === "ar" && "rotate-180")} />
+          </Link>
+          <Link href="/contact" className="btn-outline text-sm sm:text-base">
+            {t("contactUs")}
+          </Link>
+        </motion.div>
 
         {/* Visual representation image of the company (large & cleanly animated) */}
         <motion.div

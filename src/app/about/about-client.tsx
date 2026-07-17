@@ -8,6 +8,7 @@ import { VisionMissionSection } from "@/components/sections/vision-mission";
 import { CoreValuesSection } from "@/components/sections/core-values";
 import { AspirationsSection } from "@/components/sections/aspirations";
 import { useLanguage } from "@/components/layout/language-context";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export function AboutClientPage() {
   const { t, language } = useLanguage();
@@ -42,6 +43,10 @@ export function AboutClientPage() {
             style={{ background: "radial-gradient(circle, #5B43D6 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Breadcrumb
+              items={[{ label: language === "en" ? "About Us" : "من نحن" }]}
+              className="justify-center"
+            />
             <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("aboutPage.tag")}</span>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-5 sm:mb-6 mt-4 sm:mt-5"

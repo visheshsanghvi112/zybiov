@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal, StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
+import { cn } from "@/lib/utils";
 
 export function AboutSection() {
   const { t } = useLanguage();
@@ -141,6 +143,25 @@ export function AboutSection() {
                 ))}
               </div>
             </StaggerContainer>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="mt-8"
+            >
+              <Link
+                href="/why-zybiov"
+                className={cn(
+                  "btn-primary text-sm"
+                )}
+              >
+                {t("whyChooseUs.cta")}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

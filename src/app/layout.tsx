@@ -72,6 +72,7 @@ export const metadata: Metadata = {
 import { PageLoader } from "@/components/ui/loader";
 import { CookieBanner } from "@/components/ui/cookie-banner";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
+import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
 
 export default function RootLayout({
   children,
@@ -89,10 +90,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <ScrollProgressBar />
         <PageLoader />
         <LanguageProvider>
           <ScrollToTop />
           {children}
+          <BackToTopButton />
           <CookieBanner />
         </LanguageProvider>
       </body>
