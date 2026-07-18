@@ -4,18 +4,23 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us | Zybiov Multi-Activities Limited",
   description:
-    "Discover Zybiov Multi-Activities Limited, a premier importer and distributor of pharmaceuticals and medical supplies in Sudan. Learn about our mission, vision, core values, and corporate standards.",
+    "Discover Zybiov Multi-Activities Limited, a premier pharmaceutical importer and distributor. Learn about our headquarters in Sudan, our liaison & sourcing operations in Mumbai (India), and our vision for global healthcare networks.",
   keywords: [
     "About Zybiov",
     "Zybiov Multi-Activities Limited",
     "Pharmaceutical importer Sudan",
     "Medical supply chain Sudan",
     "Sudan healthcare distribution",
+    "Mumbai liaison office pharma",
+    "India Sudan pharma sourcing",
   ],
+  alternates: {
+    canonical: "https://www.zybiov.com/about",
+  },
   openGraph: {
     title: "About Us | Zybiov Multi-Activities Limited",
     description:
-      "Discover Zybiov Multi-Activities Limited, a premier importer and distributor of pharmaceuticals and medical supplies in Sudan.",
+      "Discover Zybiov Multi-Activities Limited, a premier pharmaceutical importer and distributor bridging India and Sudan.",
     url: "https://www.zybiov.com/about",
     type: "website",
   },
@@ -23,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Us | Zybiov Multi-Activities Limited",
     description:
-      "Discover Zybiov Multi-Activities Limited, a premier importer and distributor of pharmaceuticals and medical supplies in Sudan.",
+      "Discover Zybiov Multi-Activities Limited, a premier pharmaceutical importer and distributor bridging India and Sudan.",
   },
 };
 

@@ -4,18 +4,23 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Why Choose Zybiov | Zybiov Multi-Activities Limited",
   description:
-    "Discover why Zybiov is Sudan's preferred pharmaceutical distributor. Driven by global manufacturer partnerships, strict GMP standards compliance, and an optimized cold-chain logistics network.",
+    "Discover why Zybiov is the preferred pharmaceutical distributor. Driven by global manufacturer partnerships, strict GMP standards compliance, and an optimized logistics network bridging India (Mumbai) and Sudan.",
   keywords: [
     "Why Zybiov",
     "Pharmaceutical distribution standards Sudan",
     "GMP compliance Sudan",
     "Cold chain logistics Sudan",
     "Reliable medical distributor",
+    "Indian manufacturer partnerships pharma",
+    "Mumbai liaison sourcing standards",
   ],
+  alternates: {
+    canonical: "https://www.zybiov.com/why-zybiov",
+  },
   openGraph: {
     title: "Why Choose Zybiov | Zybiov Multi-Activities Limited",
     description:
-      "Discover why Zybiov is Sudan's preferred pharmaceutical distributor. Driven by global manufacturer partnerships, strict GMP standards compliance, and an optimized cold-chain logistics network.",
+      "Discover why Zybiov is the preferred pharmaceutical distributor bridging global manufacturing in India (Mumbai) and Sudan.",
     url: "https://www.zybiov.com/why-zybiov",
     type: "website",
   },
@@ -23,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Why Choose Zybiov | Zybiov Multi-Activities Limited",
     description:
-      "Discover why Zybiov is Sudan's preferred pharmaceutical distributor. Driven by global manufacturer partnerships, strict GMP standards compliance, and an optimized cold-chain logistics network.",
+      "Discover why Zybiov is the preferred pharmaceutical distributor bridging global manufacturing in India (Mumbai) and Sudan.",
   },
 };
 

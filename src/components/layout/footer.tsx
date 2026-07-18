@@ -113,13 +113,23 @@ export function Footer() {
             <h3 className="text-white font-bold text-xs sm:text-sm uppercase tracking-widest mb-5">
               {language === "en" ? "Corporate Info" : "معلومات الاتصال"}
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               <li className="flex items-start gap-3 text-white/55 text-sm">
                 <MapPin className="w-4 h-4 text-[#5B43D6] flex-shrink-0 mt-0.5" />
-                <span>Khartoum, Sudan</span>
+                <div>
+                  <span className="block text-[10px] text-white/40 uppercase tracking-wider font-bold">Headquarters</span>
+                  <span>Khartoum, Sudan</span>
+                </div>
               </li>
               <li className="flex items-start gap-3 text-white/55 text-sm">
-                <Phone className="w-4 h-4 text-[#28B7C7] flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#28B7C7] flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="block text-[10px] text-white/40 uppercase tracking-wider font-bold">Liaison Office</span>
+                  <span>Mumbai, India</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3 text-white/55 text-sm">
+                <Phone className="w-4 h-4 text-[#5B43D6] flex-shrink-0 mt-0.5" />
                 <a href="tel:+249111909092" className="hover:text-white transition-colors">
                   +249 111 909 092
                 </a>

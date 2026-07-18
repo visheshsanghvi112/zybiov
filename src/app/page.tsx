@@ -2,29 +2,36 @@ import { HomeClientPage } from "./home-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution — Sudan",
+  title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution — Sudan & India",
   description:
-    "Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies. Quality in Every Step Toward Better Healthcare.",
+    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
   keywords: [
     "Zybiov Multi-Activities Limited",
     "Zybiov Sudan",
+    "Zybiov Mumbai",
     "Sudan pharmaceutical distributor",
+    "Mumbai pharmaceutical exporter",
     "Medical equipment Sudan",
     "Nutritional supplements Sudan",
     "Sudan medicine import",
+    "Indian pharmaceutical sourcing Sudan",
+    "Sudan medical supply chain",
   ],
+  alternates: {
+    canonical: "https://www.zybiov.com",
+  },
   openGraph: {
-    title: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution",
+    title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     description:
-      "Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies.",
+      "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
     url: "https://www.zybiov.com",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution",
+    title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     description:
-      "Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies.",
+      "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
   },
 };
 

@@ -11,46 +11,56 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.zybiov.com"),
   title: {
-    default: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution — Sudan",
+    default: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution — Sudan & India",
     template: "%s | Zybiov Multi-Activities Limited",
   },
   description:
-    "Zybiov Multi-Activities Limited is a leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies. Delivering integrated healthcare solutions through the highest standards of quality, compliance, and operational excellence.",
+    "Zybiov Multi-Activities Limited is a premier pharmaceutical and medical supplies importer and distributor, bridging manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa.",
   keywords: [
     "Zybiov",
+    "Zybiov Multi-Activities Limited",
     "pharmaceutical distribution Sudan",
     "medical supplies Sudan",
-    "healthcare solutions",
-    "pharmaceutical import",
-    "Zybiov Multi-Activities Limited",
+    "Mumbai pharmaceutical sourcing",
+    "India pharmaceutical export",
+    "global medical supply chain",
     "pharmaceutical company Sudan",
-    "medical supply chain",
+    "Sudan medicine import",
+    "healthcare solutions East Africa",
+    "Sudan India pharma trade",
   ],
   authors: [{ name: "Zybiov Multi-Activities Limited" }],
   creator: "Zybiov Multi-Activities Limited",
   publisher: "Zybiov Multi-Activities Limited",
+  alternates: {
+    canonical: "https://www.zybiov.com",
+    languages: {
+      "en": "https://www.zybiov.com",
+      "ar": "https://www.zybiov.com",
+    },
+  },
   openGraph: {
     type: "website",
     url: "https://www.zybiov.com",
-    title: "Zybiov Multi-Activities Limited | Premium Pharmaceutical Distribution",
+    title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Distribution",
     description:
-      "Quality in Every Step Toward Better Healthcare. A leading Sudanese company specializing in the importation and distribution of pharmaceuticals and medical supplies.",
+      "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan and East Africa. Quality in Every Step.",
     siteName: "Zybiov Multi-Activities Limited",
     images: [
       {
-        url: "/logo.png",
-        width: 1080,
-        height: 1080,
-        alt: "Zybiov Multi-Activities Limited Logo",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Zybiov Multi-Activities Limited — Global Pharmaceutical Distribution",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zybiov Multi-Activities Limited | Pharmaceutical Distribution",
+    title: "Zybiov Multi-Activities Limited | Global Pharmaceutical Sourcing",
     description:
-      "Quality in Every Step Toward Better Healthcare. Leading pharmaceutical & medical supply distribution in Sudan.",
-    images: ["/logo.png"],
+      "Bridging global pharmaceutical manufacturing in India (Mumbai) with distribution networks in Sudan. Quality in Every Step.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -61,11 +71,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/logo.png", type: "image/png" },
-    ],
-    apple: { url: "/logo.png", type: "image/png" },
-    shortcut: "/logo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
   },
 };
 
@@ -73,6 +81,7 @@ import { PageLoader } from "@/components/ui/loader";
 import { CookieBanner } from "@/components/ui/cookie-banner";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export default function RootLayout({
   children,
@@ -93,6 +102,7 @@ export default function RootLayout({
         <ScrollProgressBar />
         <PageLoader />
         <LanguageProvider>
+          <JsonLd />
           <ScrollToTop />
           {children}
           <BackToTopButton />
