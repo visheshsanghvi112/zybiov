@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
@@ -134,16 +133,17 @@ export function HeroSection() {
           }}
           className="relative w-full max-w-4xl aspect-[21/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_80px_rgba(91,67,214,0.18)] border-4 border-white/80 group"
         >
-          <Image
-            src="/hero-lab.png"
-            alt="Zybiov Pharmaceutical Sourcing & Operations"
-            fill
-            className="object-cover transition-transform duration-[6s] group-hover:scale-105"
-            priority
-            sizes="100vw"
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-play-of-light-on-a-microscope-41227-large.mp4"
+            poster="/hero-lab.png"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[6s] group-hover:scale-103"
           />
           {/* Subtle gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
         </motion.div>
       </div>
