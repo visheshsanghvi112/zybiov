@@ -33,8 +33,27 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      return;
+    }
+
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+
+    const subject = encodeURIComponent(`Inquiry from ${formData.name} (${formData.company || "Individual"})`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone || "N/A"}\n` +
+      `Company: ${formData.company || "N/A"}\n\n` +
+      `Message:\n${formData.message}`
+    );
+
+    // Redirect to mailto link after success animation begins
+    setTimeout(() => {
+      window.location.href = `mailto:zybiov.ltd88@gmail.com?subject=${subject}&body=${body}`;
+    }, 1000);
+
+    setTimeout(() => setSubmitted(false), 5000);
     setFormData({ name: "", email: "", phone: "", company: "", message: "" });
   };
 

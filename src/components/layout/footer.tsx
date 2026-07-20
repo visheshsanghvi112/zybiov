@@ -46,7 +46,7 @@ export function Footer() {
                   src="/logo.png"
                   alt={t("brandName")}
                   fill
-                  className="object-contain mix-blend-screen"
+                  className="object-contain"
                   sizes="130px"
                 />
               </div>

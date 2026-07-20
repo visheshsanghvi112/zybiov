@@ -90,6 +90,7 @@ export const translations = {
       badgeComplianceSub: "Full adherence to international quality & legal standards",
       badgePartner: "Trusted Partner",
       badgeSector: "Healthcare Sector",
+      altPharmacist: "Zybiov pharmacist ensuring medication quality",
     },
 
     // Vision, Mission & Core Values
@@ -102,6 +103,7 @@ export const translations = {
       visionDesc: "To be the driving force and the preferred destination for high-quality healthcare solutions, setting the benchmark for operational excellence across the industry.",
       missionTitle: "Our Mission",
       missionDesc: "To provide premium pharmaceutical and medical products through strategic partnerships with leading global manufacturers, while ensuring supply chain efficiency, exceptional service quality, and full compliance with the highest international standards.",
+      altPatientCare: "Zybiov delivering healthcare to Sudanese communities",
     },
 
     coreValues: {
@@ -208,6 +210,10 @@ export const translations = {
       collageGmp: "GMP Facilities",
       collageDigital: "Digital Innovation",
       collageScience: "Advanced Research & Molecular Science",
+      altTeam: "Research team collaboration and healthcare experts",
+      altGmp: "Pharmaceutical production under strict GMP standards",
+      altLab: "Digital health laboratory setup",
+      altMolecule: "Pharmaceutical molecule research and medical science",
     },
 
     // Aspirations
@@ -231,6 +237,7 @@ export const translations = {
       pillar3Desc: "Building a diversified healthcare business focused on long-term value, trust, and continuous improvement.",
       ctaGetInTouch: "Get In Touch",
       ctaExpertise: "Explore Our Expertise",
+      altLabDigital: "Future of healthcare innovation and digital laboratory",
     },
 
     // Page-level headers
@@ -433,6 +440,7 @@ export const translations = {
       badgeComplianceSub: "الالتزام التام بالمعايير القانونية ومعايير الجودة الدولية",
       badgePartner: "شريك موثوق به",
       badgeSector: "قطاع الرعاية الصحية",
+      altPharmacist: "صيدلي زيبوف يضمن جودة الأدوية والمستلزمات",
     },
 
     // Vision, Mission & Core Values
@@ -445,6 +453,7 @@ export const translations = {
       visionDesc: "أن نكون القوة الدافعة والوجهة المفضلة لحلول الرعاية الصحية عالية الجودة، مع وضع المعايير للتميز التشغيلي في هذا المجال.",
       missionTitle: "رسالتنا",
       missionDesc: "تقديم منتجات طبية ودوائية متميزة من خلال شراكات استراتيجية مع كبار المصنعين العالميين، مع ضمان كفاءة سلسلة التوريد وجودة الخدمة الاستثنائية والامتثال التام لأعلى المعايير الدولية.",
+      altPatientCare: "زيبوف تقدم الرعاية الصحية للمجتمعات السودانية",
     },
 
     coreValues: {
@@ -574,6 +583,7 @@ export const translations = {
       pillar3Desc: "بناء أعمال رعاية صحية متنوعة تركز على القيمة طويلة الأمد والثقة والتحسين المستمر.",
       ctaGetInTouch: "تواصل معنا",
       ctaExpertise: "استكشف مجالات خبرتنا",
+      altLabDigital: "مستقبل الابتكار في الرعاية الصحية والمختبرات الرقمية",
     },
 
     // Page-level headers
