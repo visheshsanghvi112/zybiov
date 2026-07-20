@@ -36,8 +36,8 @@ export function AboutSection() {
             {/* Main image */}
             <div className="relative rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(91,67,214,0.12)]" style={{ aspectRatio: "4/5" }}>
               <Image
-                src="/about-pharmacist.png"
-                alt="Zybiov pharmacist ensuring medication quality"
+                src="https://images.pexels.com/photos/3735186/pexels-photo-3735186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="Zybiov clinical research facility"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -62,23 +62,20 @@ export function AboutSection() {
               <p className="text-[10px] sm:text-xs leading-relaxed hidden sm:block" style={{ color: "#5E647A" }}>{t("about.badgeComplianceSub")}</p>
             </motion.div>
 
-            {/* Second accent */}
+            {/* Second accent: floating protein/molecule image */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.65, duration: 0.5 }}
-              className="absolute -top-4 -left-4 sm:-left-6 lg:-left-8 glass rounded-2xl p-3 sm:p-4 shadow-xl border border-white/70 hidden sm:block"
+              className="absolute -top-4 -left-4 sm:-left-6 lg:-left-8 w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block"
             >
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg, #5B43D6, #28B7C7)" }}>
-                  <span className="text-white text-xs font-bold">ZB</span>
-                </div>
-                <div>
-                  <p className="text-xs font-bold" style={{ color: "#1E244B" }}>{t("about.badgePartner")}</p>
-                  <p className="text-[10px]" style={{ color: "#5E647A" }}>{t("about.badgeSector")}</p>
-                </div>
-              </div>
+              <Image
+                src="/molecule.png"
+                alt="Advanced Protein Research"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </Reveal>
 
