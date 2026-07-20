@@ -101,7 +101,7 @@ export function Navbar() {
                 alt={t("brandName")}
                 fill
                 className={cn(
-                  "object-contain mix-blend-multiply",
+                  "object-contain",
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
@@ -196,7 +196,7 @@ export function Navbar() {
                     alt={t("brandShort")}
                     fill
                     className={cn(
-                      "object-contain mix-blend-multiply",
+                      "object-contain",
                       dir === "rtl" ? "object-right" : "object-left"
                     )}
                     priority

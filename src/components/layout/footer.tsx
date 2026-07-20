@@ -41,13 +41,13 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div className="relative w-[130px] h-[48px]">
+              <div className="relative w-[180px] h-[66px]">
                 <Image
                   src="/logo.png"
                   alt={t("brandName")}
                   fill
                   className="object-contain"
-                  sizes="130px"
+                  sizes="180px"
                 />
               </div>
             </div>
