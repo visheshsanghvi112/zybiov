@@ -21,7 +21,7 @@ function LanguageToggle({ language, setLanguage }: { language: "en" | "ar", setL
   return (
     <div
       onClick={() => setLanguage(language === "en" ? "ar" : "en")}
-      className="relative w-[86px] h-[38px] bg-[#F0F2FA] rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-[#E4E7F2] select-none"
+      className="relative w-[86px] h-[38px] bg-section rounded-full p-[3px] flex items-center justify-between cursor-pointer border border-border select-none"
     >
       {/* Sliding Pill Indicator */}
       <motion.div
@@ -35,13 +35,13 @@ function LanguageToggle({ language, setLanguage }: { language: "en" | "ar", setL
       {/* Labels */}
       <span className={cn(
         "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
-        language === "en" ? "text-[#5B43D6]" : "text-[#8892A4]"
+        language === "en" ? "text-primary" : "text-muted"
       )}>
         EN
       </span>
       <span className={cn(
         "z-10 text-[10px] font-extrabold flex-1 text-center transition-colors duration-200",
-        language === "ar" ? "text-[#5B43D6]" : "text-[#8892A4]"
+        language === "ar" ? "text-primary" : "text-muted"
       )}>
         عربي
       </span>
@@ -88,7 +88,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-white/96 backdrop-blur-xl shadow-[0_4px_24px_rgba(30,36,75,0.08)] border-b border-[#E4E7F2]/80"
+            ? "bg-white/96 backdrop-blur-xl shadow-[0_4px_24px_rgba(30,36,75,0.08)] border-b border-border/80"
             : "bg-white/80 backdrop-blur-md border-b border-white/20"
         )}
       >
@@ -119,15 +119,15 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative px-2.5 xl:px-4 py-2 text-[14px] xl:text-[15px] font-semibold transition-all duration-200 rounded-lg hover:text-[#5B43D6] hover:bg-[#5B43D6]/5",
-                    isActive ? "text-[#5B43D6]" : "text-[#1E244B]"
+                    "relative px-2.5 xl:px-4 py-2 text-[14px] xl:text-[15px] font-semibold transition-all duration-200 rounded-lg hover:text-primary hover:bg-primary/5",
+                    isActive ? "text-primary" : "text-heading"
                   )}
                 >
                   {t(link.key)}
                   {isActive && (
                     <motion.span
                       layoutId="activeNavUnderline"
-                      className="absolute bottom-0 h-0.5 bg-[#5B43D6] left-2.5 right-2.5 xl:left-4 xl:right-4 rounded-full"
+                      className="absolute bottom-0 h-0.5 bg-primary left-2.5 right-2.5 xl:left-4 xl:right-4 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -150,7 +150,7 @@ export function Navbar() {
             <LanguageToggle language={language} setLanguage={setLanguage} />
             <button
               onClick={() => setMobileOpen(true)}
-              className="w-11 h-11 flex items-center justify-center rounded-xl text-[#1E244B] hover:bg-[#5B43D6]/10 transition-all duration-200 active:scale-95 cursor-pointer"
+              className="w-11 h-11 flex items-center justify-center rounded-xl text-heading hover:bg-primary/10 transition-all duration-200 active:scale-95 cursor-pointer"
               aria-label={t("nav.openMenu")}
               aria-expanded={mobileOpen}
             >
@@ -171,7 +171,7 @@ export function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 z-[60] bg-[#0d1136]/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[60] bg-slate-900/50 backdrop-blur-sm lg:hidden"
             />
 
             {/* Drawer panel */}
@@ -186,10 +186,10 @@ export function Navbar() {
               )}
             >
               {/* Top gradient strip */}
-              <div className="h-1 w-full bg-gradient-to-r from-[#5B43D6] via-[#7C5CFC] to-[#A78BFA]" />
+              <div className="h-1 w-full bg-gradient-to-r from-primary via-primary-light to-lavender" />
 
               {/* Header */}
-              <div className="flex items-center justify-between px-6 pt-5 pb-5 border-b border-[#F0F2FA]">
+              <div className="flex items-center justify-between px-6 pt-5 pb-5 border-b border-border">
                 <div className="relative w-[150px] h-[53px]">
                   <Image
                     src="/logo.png"
@@ -204,7 +204,7 @@ export function Navbar() {
                 </div>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F5F4FF] text-[#5B43D6] hover:bg-[#5B43D6] hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
+                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
                   aria-label={t("nav.closeMenu")}
                 >
                   <X className="w-5 h-5" />
@@ -228,8 +228,8 @@ export function Navbar() {
                         className={cn(
                           "flex items-center justify-between px-4 py-4 text-[15px] font-semibold rounded-xl transition-all duration-200 group",
                           isActive
-                            ? "text-[#5B43D6] bg-[#5B43D6]/8"
-                            : "text-[#1E244B] hover:text-[#5B43D6] hover:bg-[#5B43D6]/5"
+                            ? "text-primary bg-primary/10"
+                            : "text-heading hover:text-primary hover:bg-primary/5"
                         )}
                       >
                         <span>{t(link.key)}</span>
@@ -237,8 +237,8 @@ export function Navbar() {
                           className={cn(
                             "w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-200",
                             isActive
-                              ? "bg-[#5B43D6] text-white"
-                              : "bg-[#F0F2FA] text-[#5B43D6] group-hover:bg-[#5B43D6]/10",
+                              ? "bg-primary text-white"
+                              : "bg-section text-primary group-hover:bg-primary/10",
                             dir === "rtl" ? "rotate-180" : ""
                           )}
                         >
@@ -255,23 +255,23 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                className="p-5 border-t border-[#F0F2FA] bg-[#FAFBFD] space-y-4"
+                className="p-5 border-t border-border bg-card space-y-4"
               >
-                <div className="flex items-center justify-between bg-white border border-[#E4E7F2] p-3 rounded-xl">
-                  <span className="text-xs font-bold text-[#5E647A]">{language === "en" ? "Change Language" : "تغيير اللغة"}</span>
+                <div className="flex items-center justify-between bg-white border border-border p-3 rounded-xl">
+                  <span className="text-xs font-bold text-body">{language === "en" ? "Change Language" : "تغيير اللغة"}</span>
                   <LanguageToggle language={language} setLanguage={setLanguage} />
                 </div>
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full bg-[#5B43D6] hover:bg-[#4A35C0] text-white font-semibold text-[15px] py-3.5 px-6 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-[0_4px_16px_rgba(91,67,214,0.3)]"
+                  className="flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary-dark text-white font-semibold text-[15px] py-3.5 px-6 rounded-xl transition-all duration-200 active:scale-[0.98] shadow-sm"
                 >
                   {t("contactUs")}
                   <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
                 </Link>
                 <a
                   href="tel:+249111909092"
-                  className="flex items-center justify-center gap-2 w-full text-[14px] font-medium text-[#5B6790] hover:text-[#5B43D6] transition-colors duration-200"
+                  className="flex items-center justify-center gap-2 w-full text-[14px] font-medium text-muted hover:text-primary transition-colors duration-200"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   <span>{t("nav.touch")}</span>

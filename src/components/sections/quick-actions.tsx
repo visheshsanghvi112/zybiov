@@ -14,34 +14,33 @@ export function QuickActionsSection() {
       icon: Globe,
       title: t("hero.statGlobal"),
       sub: t("hero.statGlobalSub"),
-      gradient: "from-[#5B43D6] to-[#2B7DDC]",
+      gradient: "from-primary to-secondary",
     },
     {
       icon: ShieldCheck,
       title: t("hero.statIso"),
       sub: t("hero.statIsoSub"),
-      gradient: "from-[#2B7DDC] to-[#28B7C7]",
+      gradient: "from-secondary to-accent",
     },
     {
       icon: Clock,
       title: t("hero.statReliable"),
       sub: t("hero.statReliableSub"),
-      gradient: "from-[#28B7C7] to-[#5B43D6]",
+      gradient: "from-accent to-primary",
     },
   ];
 
   return (
-    <section className="relative py-16 bg-[#FAFBFD] border-t border-[#E4E7F2]">
+    <section className="relative py-16 bg-card border-t border-border">
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="absolute top-1/2 left-0 w-80 h-80 rounded-full opacity-[0.03]"
-          style={{ background: "radial-gradient(circle, #5B43D6 0%, transparent 70%)" }}
+          className="absolute top-1/2 left-0 w-80 h-80 rounded-full opacity-[0.03] bg-[radial-gradient(circle,var(--color-primary)_0%,transparent_70%)]"
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white border border-[#E4E7F2] rounded-[24px] p-8 sm:p-10 lg:p-12 shadow-[0_12px_40px_rgba(30,36,75,0.04)] flex flex-col lg:flex-row items-center justify-between gap-10">
+        <div className="premium-card p-8 sm:p-10 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-10">
           
           {/* Left Side: Stats info */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 w-full lg:w-auto flex-1">
@@ -52,10 +51,10 @@ export function QuickActionsSection() {
                     <stat.icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="font-extrabold text-xl sm:text-2xl text-[#1E244B]" style={{ fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}>
+                    <p className="font-extrabold text-xl sm:text-2xl text-heading">
                       {stat.title}
                     </p>
-                    <p className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8892A4] mt-0.5 sm:mt-1 font-bold">
+                    <p className="text-[10px] sm:text-xs uppercase tracking-widest text-muted mt-0.5 sm:mt-1 font-bold">
                       {stat.sub}
                     </p>
                   </div>
@@ -70,7 +69,7 @@ export function QuickActionsSection() {
               {t("hero.btnExpertise")}
               <ArrowRight className={cn("w-4 h-4", dir === "rtl" && "rotate-180")} />
             </Link>
-            <Link href="/about" className="btn-outline py-3.5 px-7 hover:bg-[#1E244B]/5">
+            <Link href="/about" className="btn-outline py-3.5 px-7 hover:bg-heading/5">
               {t("hero.btnAbout")}
             </Link>
           </Reveal>
