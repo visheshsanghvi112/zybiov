@@ -134,13 +134,13 @@ export function HeroSection() {
           className="relative w-full max-w-4xl aspect-[21/10] rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_32px_80px_rgba(91,67,214,0.18)] border-4 border-white/80 group"
         >
           <video
-            src="https://assets.mixkit.co/videos/preview/mixkit-play-of-light-on-a-microscope-41227-large.mp4"
+            src="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4"
             poster="/hero-lab.png"
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[6s] group-hover:scale-103"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[6s] group-hover:scale-105"
           />
           {/* Subtle gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/50 via-transparent to-transparent" />
