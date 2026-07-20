@@ -1,15 +1,40 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal, StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
-import { motion } from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 
 export function AboutSection() {
   const { t } = useLanguage();
+
+  // 3D Tilt Logic
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    x.set(mouseX / width - 0.5);
+    y.set(mouseY / height - 0.5);
+  };
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   const highlights = [
     t("about.h1Desc"),
@@ -32,50 +57,34 @@ export function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Image */}
-          <Reveal direction="left" className="relative">
-            {/* Main image */}
-            <div className="relative rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(91,67,214,0.12)]" style={{ aspectRatio: "4/5" }}>
-              <Image
-                src="https://images.pexels.com/photos/3735186/pexels-photo-3735186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt="Zybiov clinical research facility"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0" style={{
-                background: "linear-gradient(180deg, transparent 60%, rgba(30,36,75,0.15) 100%)"
-              }} />
-            </div>
-
-            {/* Floating accent card */}
+          <Reveal direction="left" className="relative w-full h-full">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              ref={ref}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 2000 }}
+              className="relative w-full rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(91,67,214,0.15)] bg-white border border-white/40 cursor-crosshair"
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="absolute -bottom-5 -right-4 sm:-bottom-6 sm:-right-6 lg:-right-10 glass rounded-2xl p-4 sm:p-5 shadow-2xl border border-white/70 max-w-[180px] sm:max-w-[220px]"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: "#5B43D6", fontFamily: "Manrope, sans-serif" }}>
-                100%
+              {/* Inner wrapper for image scaling */}
+              <div className="relative w-full" style={{ aspectRatio: "4/5", transform: "translateZ(30px)" }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1200"
+                  alt="Modern Zybiov clinical research laboratory"
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                
+                {/* Glossy gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#1E244B]/30 via-transparent to-white/10 pointer-events-none mix-blend-overlay" />
+                
+                {/* Vignette */}
+                <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)] pointer-events-none" />
               </div>
-              <p className="text-xs sm:text-sm font-semibold mb-0.5" style={{ color: "#1E244B" }}>{t("about.badgeCompliance")}</p>
-              <p className="text-[10px] sm:text-xs leading-relaxed hidden sm:block" style={{ color: "#5E647A" }}>{t("about.badgeComplianceSub")}</p>
-            </motion.div>
-
-            {/* Second accent: floating protein/molecule image */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.65, duration: 0.5 }}
-              className="absolute -top-4 -left-4 sm:-left-6 lg:-left-8 w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block"
-            >
-              <Image
-                src="/molecule.png"
-                alt="Advanced Protein Research"
-                fill
-                className="object-cover"
-              />
             </motion.div>
           </Reveal>
 
