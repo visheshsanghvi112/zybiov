@@ -11,25 +11,25 @@ const reasons = [
     icon: Globe2,
     titleKey: "why.r1Title",
     descKey: "why.r1Desc",
-    gradient: "bg-gradient-to-br from-primary to-primary-dark",
+    gradient: "linear-gradient(135deg, #5B43D6, #4A31C0)",
   },
   {
     icon: Settings2,
     titleKey: "why.r2Title",
     descKey: "why.r2Desc",
-    gradient: "bg-gradient-to-br from-secondary to-[#1a6bc4]",
+    gradient: "linear-gradient(135deg, #2B7DDC, #1a6bc4)",
   },
   {
     icon: TrendingUp,
     titleKey: "why.r3Title",
     descKey: "why.r3Desc",
-    gradient: "bg-gradient-to-br from-accent to-[#1a9baa]",
+    gradient: "linear-gradient(135deg, #28B7C7, #1a9baa)",
   },
   {
     icon: FileCheck,
     titleKey: "why.r4Title",
     descKey: "why.r4Desc",
-    gradient: "bg-gradient-to-br from-[#5E35B1] to-[#4527A0]",
+    gradient: "linear-gradient(135deg, #5E35B1, #4527A0)",
   },
 ];
 
@@ -39,11 +39,12 @@ export function WhyZybiovSection() {
   return (
     <section
       id="why"
-      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-background"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      style={{ background: "#FFFFFF" }}
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 right-0 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full opacity-[0.04] bg-[radial-gradient(circle,var(--color-accent)_0%,transparent_70%)]"
-          style={{ transform: "translate(30%, 30%)" }} />
+        <div className="absolute bottom-0 right-0 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full opacity-[0.04]"
+          style={{ background: "radial-gradient(circle, #28B7C7 0%, transparent 70%)", transform: "translate(30%, 30%)" }} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,15 +55,21 @@ export function WhyZybiovSection() {
               <span className="section-tag mb-5 sm:mb-6 inline-flex">{t("why.badge")}</span>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-heading">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4"
+                style={{ color: "#1E244B", fontFamily: language === "ar" ? "Cairo, sans-serif" : "Manrope, sans-serif" }}>
                 {t("why.title")}{" "}
-                <span className="bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">
+                <span style={{
+                  background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>
                   {t("why.titleAccent")}
                 </span>
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
-              <p className="text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 text-body">
+              <p className="text-base sm:text-lg leading-relaxed mb-8 sm:mb-10" style={{ color: "#5E647A" }}>
                 {t("why.sub")}
               </p>
             </Reveal>
@@ -75,18 +82,24 @@ export function WhyZybiovSection() {
                     variants={fadeUpItem}
                     whileHover={{ x: dir === "rtl" ? -4 : 4 }}
                     transition={{ duration: 0.25 }}
-                    className="flex items-start gap-4 sm:gap-5 p-4 sm:p-5 premium-card"
+                    className="flex items-start gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl border"
+                    style={{
+                      background: "#FAFBFD",
+                      borderColor: "#E4E7F2",
+                      boxShadow: "0 2px 12px rgba(0,0,0,0.03)",
+                    }}
                   >
                     <div
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md ${reason.gradient}`}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md"
+                      style={{ background: reason.gradient }}
                     >
                       <reason.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-[15px] sm:text-[16px] font-bold mb-1.5 text-heading">
+                      <h3 className="text-[15px] sm:text-[16px] font-bold mb-1.5" style={{ color: "#1E244B" }}>
                         {t(reason.titleKey)}
                       </h3>
-                      <p className="text-sm leading-relaxed text-body">
+                      <p className="text-sm leading-relaxed" style={{ color: "#5E647A" }}>
                         {t(reason.descKey)}
                       </p>
                     </div>
@@ -108,7 +121,9 @@ export function WhyZybiovSection() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-heading/50 via-transparent to-transparent" />
+                <div className="absolute inset-0" style={{
+                  background: "linear-gradient(180deg, transparent 50%, rgba(30,36,75,0.5) 100%)"
+                }} />
                 <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
                   <span className="text-white font-semibold text-xs sm:text-sm">{t("why.collageTeam")}</span>
                 </div>
@@ -123,7 +138,9 @@ export function WhyZybiovSection() {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-heading/55 via-transparent to-transparent" />
+                <div className="absolute inset-0" style={{
+                  background: "linear-gradient(180deg, transparent 40%, rgba(30,36,75,0.55) 100%)"
+                }} />
                 <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
                   <span className="text-white font-semibold text-[10px] sm:text-xs">{t("why.collageGmp")}</span>
                 </div>
@@ -138,7 +155,9 @@ export function WhyZybiovSection() {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-heading/55 via-transparent to-transparent" />
+                <div className="absolute inset-0" style={{
+                  background: "linear-gradient(180deg, transparent 40%, rgba(30,36,75,0.55) 100%)"
+                }} />
                 <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
                   <span className="text-white font-semibold text-[10px] sm:text-xs">{t("why.collageDigital")}</span>
                 </div>
