@@ -51,13 +51,16 @@ export function WhyZybiovClientPage() {
           />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
-            <Breadcrumb
-              items={[{ label: language === "en" ? "Why Zybiov" : "لماذا زيبيوف" }]}
-              className="justify-center"
-            />
-            <span className="section-tag mb-5">{t("whyPage.tag")}</span>
+            <div className="flex flex-col items-center justify-center mb-6">
+              <Breadcrumb
+                items={[{ label: language === "en" ? "Why Zybiov" : "لماذا زيبيوف" }]}
+                className="justify-center !mb-3"
+              />
+              <span className="section-tag">{t("whyPage.tag")}</span>
+            </div>
+            
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-2"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
               {language === "en" ? (
@@ -71,7 +74,7 @@ export function WhyZybiovClientPage() {
                       backgroundClip: "text",
                     }}
                   >
-                    Zybiov
+                    Zybiov?
                   </span>
                 </>
               ) : (
@@ -85,7 +88,7 @@ export function WhyZybiovClientPage() {
                       backgroundClip: "text",
                     }}
                   >
-                    زيبيوف
+                    زيبيوف؟
                   </span>
                 </>
               )}

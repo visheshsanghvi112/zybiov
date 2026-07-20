@@ -163,22 +163,6 @@ export function WhyZybiovSection() {
                 </div>
               </div>
 
-              {/* Molecule image spanning full width */}
-              <div className="relative rounded-2xl overflow-hidden col-span-2" style={{ aspectRatio: "16/6" }}>
-                <Image
-                  src="/molecule.png"
-                  alt="Pharmaceutical molecule research"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0" style={{
-                  background: "linear-gradient(180deg, transparent 30%, rgba(30,36,75,0.6) 100%)"
-                }} />
-                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                  <p className="text-white font-semibold text-xs sm:text-sm">{t("why.collageScience")}</p>
-                </div>
-              </div>
             </div>
           </Reveal>
         </div>

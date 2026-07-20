@@ -95,7 +95,7 @@ export function Navbar() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[80px] sm:h-[88px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="relative w-[135px] h-[48px] sm:w-[170px] sm:h-[60px] md:w-[185px] md:h-[66px] lg:w-[200px] lg:h-[72px] transition-transform duration-300 group-hover:scale-[1.03]">
+            <div className="relative w-[155px] h-[55px] sm:w-[170px] sm:h-[60px] md:w-[185px] md:h-[66px] lg:w-[200px] lg:h-[72px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
                 src="/logo.png"
                 alt={t("brandName")}
@@ -105,7 +105,7 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 135px, (max-width: 1024px) 170px, 200px"
+                sizes="(max-width: 640px) 155px, (max-width: 1024px) 170px, 200px"
               />
             </div>
           </Link>
@@ -190,7 +190,7 @@ export function Navbar() {
 
               {/* Header */}
               <div className="flex items-center justify-between px-6 pt-5 pb-5 border-b border-[#F0F2FA]">
-                <div className="relative w-[130px] h-[46px]">
+                <div className="relative w-[150px] h-[53px]">
                   <Image
                     src="/logo.png"
                     alt={t("brandShort")}
