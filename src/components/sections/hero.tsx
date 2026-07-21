@@ -5,9 +5,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
+import { preload } from "react-dom";
 
 export function HeroSection() {
   const { language, t } = useLanguage();
+
+  preload("/hero-lab.webp", { as: "image", fetchPriority: "high" });
 
   // Slogan splitting for letter/word-by-word reveal animation
   const sloganText = language === "en" 

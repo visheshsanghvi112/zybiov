@@ -42,8 +42,8 @@
   --color-section: var(--section-bg);
   --color-card: var(--card-bg);
   --color-border: var(--border);
-  --font-jakarta: "Plus Jakarta Sans", sans-serif;
-  --font-manrope: "Manrope", sans-serif;
+  --font-jakarta: var(--font-jakarta);
+  --font-manrope: var(--font-manrope);
 }
 
 *, *::before, *::after {
@@ -78,7 +78,7 @@ textarea:-webkit-autofill:focus {
 body {
   background: var(--background);
   color: var(--body);
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-jakarta), sans-serif;
   line-height: 1.7;
   overflow-x: hidden;
   min-height: 100vh;
@@ -88,7 +88,7 @@ body {
 html[lang="ar"],
 html.lang-ar,
 [dir="rtl"] {
-  font-family: "Cairo", "Tajawal", sans-serif !important;
+  font-family: var(--font-cairo), var(--font-tajawal), sans-serif !important;
 }
 
 /* Override letter spacing that breaks Arabic cursiveness */
@@ -104,7 +104,7 @@ html[lang="ar"] h1, html.lang-ar h1,
 html[lang="ar"] h2, html.lang-ar h2,
 html[lang="ar"] h3, html.lang-ar h3,
 html[lang="ar"] h4, html.lang-ar h4 {
-  font-family: "Cairo", "Tajawal", sans-serif !important;
+  font-family: var(--font-cairo), var(--font-tajawal), sans-serif !important;
   line-height: 1.35 !important;
   font-weight: 800 !important;
 }

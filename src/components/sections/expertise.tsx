@@ -21,10 +21,10 @@ export function ExpertiseSection() {
       desc: t("expertise.sector1Desc"),
       stat: t("expertise.sector1Stat"),
       badge: language === "en" ? "01. Premium Pharmaceuticals" : "٠١. منتجات دوائية فاخرة",
-      features: language === "en" 
+      features: language === "en"
         ? ["Sourcing & Importation", "Global Manufacturer Network", "Branded & Generic Medicines", "Quality & Temperature Control"]
         : ["الاستيراد والتوريد الدولي", "شبكة مصنعين عالميين", "أدوية مبتكرة وجنيسية", "رقابة الجودة وسلسلة التبريد"],
-      tags: language === "en" 
+      tags: language === "en"
         ? ["Branded", "Generics", "GMP Certified", "Secure Supply Chain"]
         : ["مبتكرة", "جنيسية", "معتمد GMP", "سلسلة إمداد آمنة"],
       icon: Award,
@@ -37,10 +37,10 @@ export function ExpertiseSection() {
       desc: t("expertise.sector2Desc"),
       stat: t("expertise.sector2Stat"),
       badge: language === "en" ? "02. Advanced Solutions" : "٠٢. حلول متقدمة",
-      features: language === "en" 
+      features: language === "en"
         ? ["Diagnostic & Lab Instruments", "Imaging & Surgical Systems", "Hospital Furniture & Setup", "Regulatory Compliance Sourcing"]
         : ["أجهزة التشخيص والمختبرات", "أنظمة التصوير والجراحة", "أثاث وتجهيز المستشفيات", "شراء متوافق تنظيمياً"],
-      tags: language === "en" 
+      tags: language === "en"
         ? ["Diagnostics", "Imaging", "Hospital Furniture", "Surgical Technology"]
         : ["تشخيص", "تصوير طبي", "أثاث مستشفيات", "تقنيات جراحية"],
       icon: Zap,
@@ -53,10 +53,10 @@ export function ExpertiseSection() {
       desc: t("expertise.sector3Desc"),
       stat: t("expertise.sector3Stat"),
       badge: language === "en" ? "03. Health & Wellness" : "٠٣. الصحة والعافية",
-      features: language === "en" 
+      features: language === "en"
         ? ["Vitamins & Mineral Range", "Herbal & Botanical Formulas", "Sports Nutrition Solutions", "Strict Purity Standards Sourcing"]
         : ["مجموعة الفيتامينات والمعادن", "تركيبات عشبية ونباتية", "حلول التغذية الرياضية", "شراء بمعايير نقاء صارمة"],
-      tags: language === "en" 
+      tags: language === "en"
         ? ["Wellness", "Nutrition", "Herbal", "Daily Health"]
         : ["العافية", "التغذية", "عشبي", "صحة يومية"],
       icon: CheckCircle2,
@@ -79,7 +79,7 @@ export function ExpertiseSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Intro */}
         <Reveal className="text-center mb-16 sm:mb-24">
           <span className="section-tag mb-4 inline-flex">{t("expertise.tag")}</span>
@@ -142,7 +142,7 @@ export function ExpertiseSection() {
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1E244B]/40 via-transparent to-transparent" />
-                    
+
                     {/* Floating Stat Badge */}
                     <div
                       className={cn(
@@ -161,7 +161,7 @@ export function ExpertiseSection() {
                   <span className="text-xs font-extrabold tracking-widest text-[#5B43D6] uppercase mb-3">
                     {sec.badge}
                   </span>
-                  
+
                   {/* Title */}
                   <h3 className="text-2xl sm:text-3xl font-bold text-[#1E244B] mb-4" style={{ fontFamily: "Manrope, sans-serif" }}>
                     {sec.title}

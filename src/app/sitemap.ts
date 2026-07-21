@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.zybiov.com";
 
-  const routes = ["", "/about", "/contact", "/expertise", "/reviews"];
+  const routes = ["", "/about", "/contact", "/expertise", "/reviews", "/privacy-policy"];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,

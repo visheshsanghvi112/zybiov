@@ -13,6 +13,7 @@ const footerLinks = [
   { key: "nav.expertise", href: "/expertise" },
   { key: "nav.whyZybiov", href: "/reviews" },
   { key: "nav.contact", href: "/contact" },
+  { key: "nav.privacy", href: "/privacy-policy" },
 ];
 
 const socialLinks = [

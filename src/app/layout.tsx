@@ -88,6 +88,35 @@ import { CookieBanner } from "@/components/ui/cookie-banner";
 import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { ScrollProgressBar, BackToTopButton } from "@/components/ui/scroll-ui";
 import { JsonLd } from "@/components/seo/json-ld";
+import { FloatingChatbot } from "@/components/ui/floating-chatbot";
+
+import { Plus_Jakarta_Sans, Manrope, Cairo, Tajawal } from "next/font/google";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const cairo = Cairo({
+  subsets: ["arabic"],
+  variable: "--font-cairo",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+const tajawal = Tajawal({
+  subsets: ["arabic"],
+  variable: "--font-tajawal",
+  weight: ["200", "300", "400", "500", "700", "800", "900"],
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -95,14 +124,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${plusJakartaSans.variable} ${manrope.variable} ${cairo.variable} ${tajawal.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&family=Cairo:wght@200..900&family=Tajawal:wght@200..900&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body className="antialiased">
         <ScrollProgressBar />
@@ -113,6 +136,7 @@ export default function RootLayout({
           {children}
           <BackToTopButton />
           <CookieBanner />
+          <FloatingChatbot />
         </LanguageProvider>
       </body>
     </html>
