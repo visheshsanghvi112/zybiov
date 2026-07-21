@@ -97,6 +97,9 @@ export function AboutSection() {
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5 sm:mb-6"
                 style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
+                <span className="block text-sm uppercase tracking-wider text-[#5B43D6] mb-2 font-bold">
+                  {t("about.titleLeading")}
+                </span>
                 {t("about.titleMain")}{" "}
                 <span style={{
                   background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
@@ -159,7 +162,7 @@ export function AboutSection() {
               className="mt-8"
             >
               <Link
-                href="/reviews"
+                href="/why-us"
                 className={cn(
                   "btn-primary text-sm"
                 )}

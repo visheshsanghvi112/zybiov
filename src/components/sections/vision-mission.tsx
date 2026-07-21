@@ -27,13 +27,21 @@ export function VisionMissionSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <Reveal className="text-center mb-12 sm:mb-16">
-          <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("visionMission.tag")}</span>
+          <span className="section-tag mb-4 sm:mb-5 inline-flex">{t("visionMission.badge")}</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
             style={{ color: "#1E244B", fontFamily: "Manrope, sans-serif" }}>
-            {t("visionMission.title")}
+            {t("visionMission.title")}{" "}
+            <span style={{
+              background: "linear-gradient(135deg, #5B43D6 0%, #2B7DDC 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}>
+              {t("visionMission.titleAccent")}
+            </span>
           </h2>
-          <p className="text-base sm:text-lg max-w-xl mx-auto" style={{ color: "#5E647A" }}>
-            {t("visionMission.desc")}
+          <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: "#5E647A" }}>
+            {t("visionMission.sub")}
           </p>
         </Reveal>
 
