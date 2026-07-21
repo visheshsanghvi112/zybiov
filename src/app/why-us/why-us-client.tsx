@@ -6,8 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { WhyZybiovSection } from "@/components/sections/why-zybiov";
 import TestimonialSection from "@/components/ui/testimonials";
 import { useLanguage } from "@/components/layout/language-context";
-import Image from "next/image";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { PageHeader } from "@/components/ui/page-header";
 
 export function WhyUsClientPage() {
   const { t, language } = useLanguage();
@@ -18,86 +17,37 @@ export function WhyUsClientPage() {
       : "Why Choose Zybiov | Zybiov Multi-Activities Limited";
   }, [language]);
 
+  const titleNode = language === "en" ? (
+    <>
+      Why Choose{" "}
+      <span
+        className="bg-gradient-to-r from-[#5B43D6] to-[#28B7C7] bg-clip-text text-transparent"
+      >
+        Zybiov
+      </span>
+    </>
+  ) : (
+    <>
+      لماذا تختار{" "}
+      <span
+        className="bg-gradient-to-r from-[#5B43D6] to-[#28B7C7] bg-clip-text text-transparent"
+      >
+        زيبوف
+      </span>
+    </>
+  );
+
   return (
     <>
       <Navbar />
       <main className="pt-[80px] sm:pt-[88px]">
-        {/* Page Hero Header */}
-        <section
-          className="relative py-20 lg:py-28 overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, #FFFFFF 0%, #F3F5FC 100%)",
-            borderBottom: "1px solid var(--border)",
-          }}
-        >
-          {/* Background image overlay at visible opacity */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/patient-care.webp"
-              alt="Healthcare background"
-              fill
-              className="object-cover opacity-[0.08]"
-              priority
-              sizes="100vw"
-            />
-          </div>
-
-          {/* Subtle patterns */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-10"
-            style={{
-              backgroundImage: "radial-gradient(var(--accent) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
-          />
-
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
-            <div className="flex flex-col items-center justify-center mb-6">
-              <Breadcrumb
-                items={[{ label: language === "en" ? "Why Zybiov" : "لماذا زيبوف" }]}
-                className="justify-center !mb-3"
-              />
-              <span className="section-tag">{language === "en" ? "Our Advantages" : "مميزاتنا"}</span>
-            </div>
-            
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1E244B] mb-6 mt-2"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              {language === "en" ? (
-                <>
-                  Why Choose{" "}
-                  <span
-                    style={{
-                      background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    Zybiov
-                  </span>
-                </>
-              ) : (
-                <>
-                  لماذا تختار{" "}
-                  <span
-                    style={{
-                      background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    زيبوف
-                  </span>
-                </>
-              )}
-            </h1>
-            <p className="text-base sm:text-lg max-w-2xl mx-auto text-[#5E647A] leading-relaxed">
-              {language === "en" ? "Discover how our global partnerships, full compliance, and professional management make us the trusted distributor in healthcare." : "اكتشف كيف تجعلنا شراكاتنا العالمية والامتثال الكامل والإدارة المهنية الموزع الموثوق به في مجال الرعاية الصحية."}
-            </p>
-          </div>
-        </section>
+        <PageHeader
+          title={titleNode}
+          description={language === "en" ? "Discover how our global partnerships, full compliance, and professional management make us the trusted distributor in healthcare." : "اكتشف كيف تجعلنا شراكاتنا العالمية والامتثال الكامل والإدارة المهنية الموزع الموثوق به في مجال الرعاية الصحية."}
+          tag={language === "en" ? "Our Advantages" : "مميزاتنا"}
+          bgImage="/patient-care.webp"
+          breadcrumbLabel={language === "en" ? "Why Zybiov" : "لماذا زيبوف"}
+        />
 
         <WhyZybiovSection />
         <TestimonialSection />
