@@ -4,13 +4,12 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhyZybiovSection } from "@/components/sections/why-zybiov";
-import { AspirationsSection } from "@/components/sections/aspirations";
 import TestimonialSection from "@/components/ui/testimonials";
 import { useLanguage } from "@/components/layout/language-context";
 import Image from "next/image";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
-export function ReviewsClientPage() {
+export function WhyUsClientPage() {
   const { t, language } = useLanguage();
 
   useEffect(() => {
@@ -54,10 +53,10 @@ export function ReviewsClientPage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
             <div className="flex flex-col items-center justify-center mb-6">
               <Breadcrumb
-                items={[{ label: language === "en" ? "Reviews" : "التقييمات" }]}
+                items={[{ label: language === "en" ? "Why Zybiov" : "لماذا زيبوف" }]}
                 className="justify-center !mb-3"
               />
-              <span className="section-tag">{language === "en" ? "Testimonials" : "التوصيات"}</span>
+              <span className="section-tag">{language === "en" ? "Our Advantages" : "مميزاتنا"}</span>
             </div>
             
             <h1
@@ -66,7 +65,7 @@ export function ReviewsClientPage() {
             >
               {language === "en" ? (
                 <>
-                  Customer{" "}
+                  Why Choose{" "}
                   <span
                     style={{
                       background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
@@ -75,12 +74,12 @@ export function ReviewsClientPage() {
                       backgroundClip: "text",
                     }}
                   >
-                    Reviews
+                    Zybiov
                   </span>
                 </>
               ) : (
                 <>
-                  تقييمات{" "}
+                  لماذا تختار{" "}
                   <span
                     style={{
                       background: "linear-gradient(135deg, #5B43D6 0%, #28B7C7 100%)",
@@ -89,19 +88,18 @@ export function ReviewsClientPage() {
                       backgroundClip: "text",
                     }}
                   >
-                    العملاء
+                    زيبوف
                   </span>
                 </>
               )}
             </h1>
             <p className="text-base sm:text-lg max-w-2xl mx-auto text-[#5E647A] leading-relaxed">
-              {language === "en" ? "See what our partners and clients have to say about their experience working with Zybiov." : "تعرف على آراء شركائنا وعملائنا حول تجربتهم في العمل مع زيبيوف."}
+              {language === "en" ? "Discover how our global partnerships, full compliance, and professional management make us the trusted distributor in healthcare." : "اكتشف كيف تجعلنا شراكاتنا العالمية والامتثال الكامل والإدارة المهنية الموزع الموثوق به في مجال الرعاية الصحية."}
             </p>
           </div>
         </section>
 
         <WhyZybiovSection />
-        <AspirationsSection />
         <TestimonialSection />
       </main>
       <Footer />
