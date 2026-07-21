@@ -9,6 +9,7 @@ import { CoreValuesSection } from "@/components/sections/core-values";
 import { AspirationsSection } from "@/components/sections/aspirations";
 import { useLanguage } from "@/components/layout/language-context";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import Image from "next/image";
 
 export function AboutClientPage() {
   const { t, language } = useLanguage();
@@ -31,18 +32,30 @@ export function AboutClientPage() {
             borderBottom: "1px solid var(--border)",
           }}
         >
+          {/* Background image overlay at visible opacity */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/about-pharmacist.webp"
+              alt="Corporate Profile"
+              fill
+              className="object-cover opacity-[0.08]"
+              priority
+              sizes="100vw"
+            />
+          </div>
+
           {/* Subtle dot pattern */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-10"
             style={{
               backgroundImage: "radial-gradient(var(--primary) 1px, transparent 1px)",
               backgroundSize: "32px 32px",
             }}
           />
           {/* Glow */}
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full opacity-[0.06] pointer-events-none"
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full opacity-[0.06] pointer-events-none z-10"
             style={{ background: "radial-gradient(circle, #5B43D6 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20">
             <Breadcrumb
               items={[{ label: language === "en" ? "About Us" : "من نحن" }]}
               className="justify-center"

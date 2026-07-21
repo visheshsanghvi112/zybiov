@@ -30,13 +30,13 @@ export function WhyUsClientPage() {
             borderBottom: "1px solid var(--border)",
           }}
         >
-          {/* Background image overlay at low opacity */}
+          {/* Background image overlay at visible opacity */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/patient-care.png"
+              src="/patient-care.webp"
               alt="Healthcare background"
               fill
-              className="object-cover opacity-[0.04]"
+              className="object-cover opacity-[0.08]"
               priority
               sizes="100vw"
             />
