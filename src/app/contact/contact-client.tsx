@@ -44,7 +44,7 @@ export function ContactClientPage() {
           title={titleNode}
           description={t("contactPage.desc")}
           tag={t("contactPage.tag")}
-          bgImage="/hero-lab.webp"
+          bgImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1400"
           breadcrumbLabel={language === "en" ? "Contact Us" : "تواصل معنا"}
         />
 

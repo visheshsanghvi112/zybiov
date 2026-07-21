@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Breadcrumb } from "./breadcrumb";
 import { cn } from "@/lib/utils";
 
@@ -21,77 +20,31 @@ export function PageHeader({
   bgImage,
   breadcrumbLabel,
 }: PageHeaderProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  
-  // Mouse movement parallax values
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  
-  // Spring configurations for smooth movement
-  const mouseXSpring = useSpring(x, { stiffness: 80, damping: 15 });
-  const mouseYSpring = useSpring(y, { stiffness: 80, damping: 15 });
-  
-  // Map movement to subtle pixels translation
-  const translateImageX = useTransform(mouseXSpring, [-0.5, 0.5], [-20, 20]);
-  const translateImageY = useTransform(mouseYSpring, [-0.5, 0.5], [-20, 20]);
-
-  // Track mouse movement
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const width = rect.width;
-      const height = rect.height;
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-      x.set(mouseX / width - 0.5);
-      y.set(mouseY / height - 0.5);
-    };
-
-    const handleMouseLeave = () => {
-      x.set(0);
-      y.set(0);
-    };
-
-    const element = ref.current;
-    if (element) {
-      element.addEventListener("mousemove", handleMouseMove);
-      element.addEventListener("mouseleave", handleMouseLeave);
-    }
-
-    return () => {
-      if (element) {
-        element.removeEventListener("mousemove", handleMouseMove);
-        element.removeEventListener("mouseleave", handleMouseLeave);
-      }
-    };
-  }, [x, y]);
-
   return (
     <section
-      ref={ref}
       className="relative py-20 sm:py-28 lg:py-32 overflow-hidden border-b border-[#E4E7F2]/80 cursor-default"
       style={{
         background: "linear-gradient(135deg, #FFFFFF 0%, #F5F7FF 100%)",
       }}
     >
-      {/* Dynamic Parallax Background Image */}
-      <motion.div
-        className="absolute inset-0 z-0 select-none pointer-events-none [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
-        style={{
-          x: translateImageX,
-          y: translateImageY,
-        }}
-      >
-        <Image
-          src={bgImage}
-          alt=""
-          fill
-          className="object-cover opacity-[0.09] transition-transform duration-300"
-          priority
-          sizes="100vw"
-        />
-      </motion.div>
+      {/* Subtle Zoom-In Background Image on Page Load */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+        <motion.div
+          initial={{ scale: 1.08, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.08 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src={bgImage}
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </motion.div>
+      </div>
 
       {/* Floating Glowing Orbs (Abstract Luxury UI) */}
       <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
