@@ -11,7 +11,7 @@ const footerLinks = [
   { key: "nav.home", href: "/" },
   { key: "nav.about", href: "/about" },
   { key: "nav.expertise", href: "/expertise" },
-  { key: "nav.whyZybiov", href: "/why-zybiov" },
+  { key: "nav.whyZybiov", href: "/reviews" },
   { key: "nav.contact", href: "/contact" },
 ];
 

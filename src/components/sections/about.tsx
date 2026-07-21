@@ -159,7 +159,7 @@ export function AboutSection() {
               className="mt-8"
             >
               <Link
-                href="/why-zybiov"
+                href="/reviews"
                 className={cn(
                   "btn-primary text-sm"
                 )}
