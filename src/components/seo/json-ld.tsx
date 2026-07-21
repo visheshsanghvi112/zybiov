@@ -11,7 +11,7 @@ export function JsonLd() {
     "name": "Zybiov Multi-Activities Limited",
     "alternateName": ["Zybiov", "زيبوف"],
     "url": "https://www.zybiov.com",
-    "logo": "https://www.zybiov.com/logo.png",
+    "logo": "https://www.zybiov.com/logo.webp",
     "sameAs": [
       "https://www.linkedin.com/in/zybiov-co-ltd-976298421",
       "https://www.instagram.com/zybiov.ltd",
@@ -51,7 +51,8 @@ export function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WholesaleStore",
     "name": "Zybiov Multi-Activities Limited",
-    "image": "https://www.zybiov.com/logo.png",
+    "logo": "https://www.zybiov.com/logo.webp",
+    "image": "https://www.zybiov.com/logo.webp",
     "telephone": "+249-111-909-092",
     "url": "https://www.zybiov.com",
     "priceRange": "$$",

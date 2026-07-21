@@ -32,7 +32,7 @@ export function ContactClientPage() {
           {/* Background image overlay at low opacity */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/hero-lab.png"
+              src="/hero-lab.webp"
               alt="Contact background"
               fill
               className="object-cover opacity-[0.04]"

@@ -43,11 +43,11 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-5">
               <div className="relative w-[160px] h-[60px] bg-white rounded-xl shadow-sm">
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt={t("brandName")}
                   fill
                   className="object-contain p-2.5"
-                  sizes="160px"
+                  sizes="60px"
                 />
               </div>
             </div>

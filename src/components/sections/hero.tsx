@@ -135,7 +135,7 @@ export function HeroSection() {
         >
           <video
             src="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4"
-            poster="/hero-lab.png"
+            poster="/hero-lab.webp"
             autoPlay
             loop
             muted

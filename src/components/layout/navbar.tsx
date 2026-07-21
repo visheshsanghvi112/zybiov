@@ -97,7 +97,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
             <div className="relative w-[155px] h-[55px] sm:w-[170px] sm:h-[60px] md:w-[185px] md:h-[66px] lg:w-[200px] lg:h-[72px] transition-transform duration-300 group-hover:scale-[1.03]">
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt={t("brandName")}
                 fill
                 className={cn(
@@ -105,7 +105,7 @@ export function Navbar() {
                   dir === "rtl" ? "object-right" : "object-left"
                 )}
                 priority
-                sizes="(max-width: 640px) 155px, (max-width: 1024px) 170px, 200px"
+                sizes="(max-width: 640px) 55px, (max-width: 768px) 60px, (max-width: 1024px) 66px, 72px"
               />
             </div>
           </Link>
@@ -192,7 +192,7 @@ export function Navbar() {
               <div className="flex items-center justify-between px-6 pt-5 pb-5 border-b border-[#F0F2FA]">
                 <div className="relative w-[150px] h-[53px]">
                   <Image
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt={t("brandShort")}
                     fill
                     className={cn(
@@ -200,6 +200,7 @@ export function Navbar() {
                       dir === "rtl" ? "object-right" : "object-left"
                     )}
                     priority
+                    sizes="55px"
                   />
                 </div>
                 <button
