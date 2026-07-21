@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Reveal, StaggerContainer, fadeUpItem } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
-import { Globe2, Settings2, TrendingUp, FileCheck } from "lucide-react";
+import { Globe2, Settings2, TrendingUp, FileCheck, Snowflake, Award, ShieldCheck, FileHeart } from "lucide-react";
 import { useLanguage } from "../layout/language-context";
 
 const reasons = [
@@ -30,6 +30,45 @@ const reasons = [
     titleKey: "why.r4Title",
     descKey: "why.r4Desc",
     gradient: "linear-gradient(135deg, #5E35B1, #4527A0)",
+  },
+];
+
+const badges = [
+  {
+    icon: Award,
+    titleEn: "WHO-GMP Sourced",
+    titleAr: "مصادر معتمدة من GMP",
+    descEn: "Sourcing exclusively from certified manufacturers ensuring world-class production quality.",
+    descAr: "التوريد حصرياً من مصانع معتمدة تضمن أعلى مستويات جودة الإنتاج العالمية.",
+    lightBg: "rgba(91,67,214,0.04)",
+    borderColor: "rgba(91,67,214,0.08)",
+  },
+  {
+    icon: Snowflake,
+    titleEn: "Validated Cold Chain",
+    titleAr: "سلسلة تبريد معتمدة",
+    descEn: "Temperature-controlled logistics (2°C to 8°C) to secure molecular and generic efficacy.",
+    descAr: "لوجستيات مبردة ومحكمة الحرارة (من 2 إلى 8 درجات) لضمان فاعلية الأدوية والمستلزمات.",
+    lightBg: "rgba(43,125,220,0.04)",
+    borderColor: "rgba(43,125,220,0.08)",
+  },
+  {
+    icon: ShieldCheck,
+    titleEn: "ISO 9001:2015 QMS",
+    titleAr: "شهادة آيزو 9001:2015",
+    descEn: "Strict management systems ensuring service safety, transparency, and operational standards.",
+    descAr: "أنظمة إدارة جودة صارمة لضمان سلامة الخدمات وشفافية العمليات التشغيلية.",
+    lightBg: "rgba(40,183,199,0.04)",
+    borderColor: "rgba(40,183,199,0.08)",
+  },
+  {
+    icon: FileHeart,
+    titleEn: "Ministry & FDA Clearance",
+    titleAr: "تراخيص وزارة الصحة والغذاء",
+    descEn: "Full compliance and licensing verification before import, distribution, and local marketing.",
+    descAr: "تراخيص رسمية ومطابقة كاملة للوائح والتشريعات قبل الاستيراد والتسويق المحلي.",
+    lightBg: "rgba(94,53,177,0.04)",
+    borderColor: "rgba(94,53,177,0.08)",
   },
 ];
 
@@ -165,6 +204,54 @@ export function WhyZybiovSection() {
 
             </div>
           </Reveal>
+        </div>
+
+        {/* ─── Premium Trust & Compliance Badges ─── */}
+        <div className="mt-20 pt-16 border-t border-[#E4E7F2]">
+          <Reveal className="text-center mb-12">
+            <span className="section-tag mb-4 inline-flex">
+              {language === "en" ? "Compliance & Standards" : "الامتثال والمعايير"}
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#1E244B]">
+              {language === "en" ? "Uncompromising Quality Standards" : "معايير جودة لا نقبل المساومة عليها"}
+            </h3>
+            <p className="text-sm sm:text-base max-w-xl mx-auto mt-3 text-[#5E647A]">
+              {language === "en" 
+                ? "Every pharmaceutical product, medical device, and logistics process adheres to global health requirements."
+                : "يلتزم كل منتج صيدلاني وجهاز طبي وعملية لوجستية بالمتطلبات الصحية العالمية."}
+            </p>
+          </Reveal>
+
+          <StaggerContainer staggerDelay={0.08}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {badges.map((badge, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeUpItem}
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.25 }}
+                  className="p-6 rounded-2xl border flex flex-col items-center text-center justify-between"
+                  style={{
+                    background: badge.lightBg,
+                    borderColor: badge.borderColor,
+                  }}
+                >
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-xl bg-[#5B43D6]/10 flex items-center justify-center mb-4 text-[#5B43D6]">
+                      <badge.icon className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold text-[#1E244B] mb-2">
+                      {language === "en" ? badge.titleEn : badge.titleAr}
+                    </h4>
+                    <p className="text-xs leading-relaxed text-[#5E647A] px-2">
+                      {language === "en" ? badge.descEn : badge.descAr}
+                    </p>
+                  </div>
+                  <div className="w-8 h-1 bg-[#5B43D6] rounded-full mt-4" />
+                </motion.div>
+              ))}
+            </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

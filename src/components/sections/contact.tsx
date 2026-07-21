@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Reveal } from "@/components/animations/reveal";
 import { motion } from "framer-motion";
-import { Send, User, Mail, Phone, Building2, MessageSquare, MapPin, Globe } from "lucide-react";
+import { Send, User, Mail, Phone, Building2, MessageSquare, MapPin, Globe, FileText, Settings, Award } from "lucide-react";
 import { LinkedinIcon, InstagramIcon, FacebookIcon, GlobeIcon, YoutubeIcon } from "@/components/icons/social-icons";
 import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
@@ -18,16 +18,37 @@ const socialLinks = [
 
 export function ContactSection() {
   const { language, t, dir } = useLanguage();
+  const [inquiryType, setInquiryType] = useState<"general" | "client" | "manufacturer">("general");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     company: "",
     message: "",
+    licenseNumber: "",
+    businessType: "pharmacy",
+    manufacturingCountry: "",
+    certifications: "",
+    therapeuticArea: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const subjectParam = params.get("subject");
+      if (subjectParam) {
+        setFormData((prev) => ({
+          ...prev,
+          message: language === "en" 
+            ? `Dear Sourcing Team,\n\nI am requesting information regarding: ${subjectParam}.\n\nPlease let me know pricing and sourcing parameters.`
+            : `إلى فريق التوريد الموقر،\n\nأود طلب معلومات تسعير وتفاصيل استيراد بخصوص: ${subjectParam}.\n\nشاكرين لكم تعاونكم.`,
+        }));
+      }
+    }
+  }, [language]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -39,13 +60,24 @@ export function ContactSection() {
 
     setSubmitted(true);
 
-    const subject = encodeURIComponent(`Inquiry from ${formData.name} (${formData.company || "Individual"})`);
+    let prefix = "General Inquiry";
+    let extraDetails = "";
+    if (inquiryType === "client") {
+      prefix = "Client Application (B2B)";
+      extraDetails = `Business Type: ${formData.businessType}\nLicense Number: ${formData.licenseNumber}\n`;
+    } else if (inquiryType === "manufacturer") {
+      prefix = "Manufacturer Proposal (Sourcing)";
+      extraDetails = `Manufacturing Country: ${formData.manufacturingCountry}\nCertifications: ${formData.certifications}\nTherapeutic Area: ${formData.therapeuticArea}\n`;
+    }
+
+    const subject = encodeURIComponent(`[${prefix}] from ${formData.name} (${formData.company || "Individual"})`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
       `Phone: ${formData.phone || "N/A"}\n` +
-      `Company: ${formData.company || "N/A"}\n\n` +
-      `Message:\n${formData.message}`
+      `Company/Facility: ${formData.company || "N/A"}\n` +
+      extraDetails +
+      `\nMessage:\n${formData.message}`
     );
 
     // Redirect to mailto link after success animation begins
@@ -54,7 +86,18 @@ export function ContactSection() {
     }, 1000);
 
     setTimeout(() => setSubmitted(false), 5000);
-    setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      message: "",
+      licenseNumber: "",
+      businessType: "pharmacy",
+      manufacturingCountry: "",
+      certifications: "",
+      therapeuticArea: "",
+    });
   };
 
   return (
@@ -232,6 +275,26 @@ export function ContactSection() {
                     {t("contactPage.formTitle")}
                   </h3>
 
+                  {/* Inquiry Type Selector (B2B Dynamic Routing) */}
+                  <div className="relative">
+                    <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
+                      {language === "en" ? "Purpose of Inquiry" : "الغرض من التواصل"}
+                    </label>
+                    <div className="relative">
+                      <Settings className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
+                      <select
+                        name="inquiryType"
+                        value={inquiryType}
+                        onChange={(e) => setInquiryType(e.target.value as any)}
+                        className="form-input !ps-11 !pe-4 appearance-none cursor-pointer text-start"
+                      >
+                        <option value="general">{language === "en" ? "General Business Inquiry" : "استفسار تجاري عام"}</option>
+                        <option value="client">{language === "en" ? "Become a Client (Pharmacy / Hospital Registration)" : "تسجيل كعميل صيدلية / مستشفى"}</option>
+                        <option value="manufacturer">{language === "en" ? "Become a Partner (Manufacturer Sourcing Proposal)" : "تقديم عرض توريد / جهة تصنيع"}</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     {/* Name */}
                     <div className="relative">
@@ -286,9 +349,13 @@ export function ContactSection() {
                       </div>
                     </div>
 
-                    {/* Company */}
+                    {/* Company / Facility */}
                     <div>
-                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>{t("contactPage.labelCompany")}</label>
+                      <label className="block text-xs font-semibold mb-1.5" style={{ color: "#5E647A" }}>
+                        {inquiryType === "client" 
+                          ? (language === "en" ? "Pharmacy / Facility Name" : "اسم الصيدلية / المنشأة") 
+                          : t("contactPage.labelCompany")}
+                      </label>
                       <div className="relative">
                         <Building2 className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#8892A4" }} />
                         <input
@@ -297,12 +364,120 @@ export function ContactSection() {
                           name="company"
                           value={formData.company}
                           onChange={handleChange}
-                          placeholder={t("contactPage.placeholderCompany")}
+                          placeholder={inquiryType === "client" 
+                            ? (language === "en" ? "e.g., Al-Amal Pharmacy" : "مثال: صيدلية الأمل")
+                            : t("contactPage.placeholderCompany")}
                           className="form-input !ps-11 !pe-4 text-start"
                         />
                       </div>
                     </div>
                   </div>
+
+                  {/* Dynamic Fields for Client Onboarding */}
+                  {inquiryType === "client" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 p-4 rounded-2xl bg-blue-50/50 border border-blue-100"
+                    >
+                      <div>
+                        <label className="block text-xs font-semibold mb-1.5 text-blue-900">
+                          {language === "en" ? "Facility Type" : "نوع المنشأة"}
+                        </label>
+                        <select
+                          name="businessType"
+                          value={formData.businessType}
+                          onChange={handleChange}
+                          className="form-input border-blue-200 text-start"
+                        >
+                          <option value="pharmacy">{language === "en" ? "Retail Pharmacy" : "صيدلية تجزئة"}</option>
+                          <option value="hospital">{language === "en" ? "Hospital / Clinical Center" : "مستشفى / مركز طبي"}</option>
+                          <option value="wholesale">{language === "en" ? "Wholesale Distributor" : "موزع جملة"}</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold mb-1.5 text-blue-900">
+                          {language === "en" ? "Healthcare License Number" : "رقم ترخيص المنشأة الطبية"}
+                        </label>
+                        <div className="relative">
+                          <FileText className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#2B7DDC" }} />
+                          <input
+                            type="text"
+                            name="licenseNumber"
+                            value={formData.licenseNumber}
+                            onChange={handleChange}
+                            required
+                            placeholder={language === "en" ? "e.g., LIC-8742-SD" : "مثال: LIC-8742-SD"}
+                            className="form-input !ps-11 !pe-4 border-blue-200 text-start"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Dynamic Fields for Manufacturer Partnership */}
+                  {inquiryType === "manufacturer" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-purple-50/50 border border-purple-100"
+                    >
+                      <div>
+                        <label className="block text-xs font-semibold mb-1.5 text-purple-900">
+                          {language === "en" ? "Country of Origin" : "بلد المنشأ"}
+                        </label>
+                        <div className="relative">
+                          <Globe className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#5B43D6" }} />
+                          <input
+                            type="text"
+                            name="manufacturingCountry"
+                            value={formData.manufacturingCountry}
+                            onChange={handleChange}
+                            required
+                            placeholder={language === "en" ? "e.g., India, Germany" : "مثال: الهند، ألمانيا"}
+                            className="form-input !ps-11 !pe-4 border-purple-200 text-start"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold mb-1.5 text-purple-900">
+                          {language === "en" ? "Certifications" : "الشهادات والاعتمادات"}
+                        </label>
+                        <div className="relative">
+                          <Award className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#5B43D6" }} />
+                          <input
+                            type="text"
+                            name="certifications"
+                            value={formData.certifications}
+                            onChange={handleChange}
+                            required
+                            placeholder={language === "en" ? "e.g., WHO-GMP, FDA" : "مثال: WHO-GMP, FDA"}
+                            className="form-input !ps-11 !pe-4 border-purple-200 text-start"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold mb-1.5 text-purple-900">
+                          {language === "en" ? "Therapeutic Focus" : "التخصص العلاجي"}
+                        </label>
+                        <div className="relative">
+                          <FileText className={cn("absolute top-1/2 -translate-y-1/2 w-4 h-4", dir === "rtl" ? "right-4" : "left-4")} style={{ color: "#5B43D6" }} />
+                          <input
+                            type="text"
+                            name="therapeuticArea"
+                            value={formData.therapeuticArea}
+                            onChange={handleChange}
+                            required
+                            placeholder={language === "en" ? "e.g., Oncology, Cardiology" : "مثال: الأورام، أمراض القلب"}
+                            className="form-input !ps-11 !pe-4 border-purple-200 text-start"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
 
                   {/* Message */}
                   <div>

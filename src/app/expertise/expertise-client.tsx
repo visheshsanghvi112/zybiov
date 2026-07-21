@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ExpertiseSection } from "@/components/sections/expertise";
+import { ProductCatalogSection } from "@/components/sections/product-catalog";
 import { AspirationsSection } from "@/components/sections/aspirations";
 import { useLanguage } from "@/components/layout/language-context";
 import { PageHeader } from "@/components/ui/page-header";
@@ -50,6 +51,7 @@ export function ExpertiseClientPage() {
         />
 
         <ExpertiseSection />
+        <ProductCatalogSection />
         <AspirationsSection />
       </main>
       <Footer />
