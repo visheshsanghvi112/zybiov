@@ -7,6 +7,8 @@ import { useLanguage } from "../layout/language-context";
 import { cn } from "@/lib/utils";
 import { preload } from "react-dom";
 
+import { MeshGradientBg } from "@/components/ui/mesh-gradient-bg";
+
 export function HeroSection() {
   const { language, t } = useLanguage();
 
@@ -49,19 +51,24 @@ export function HeroSection() {
         background: "linear-gradient(180deg, #FFFFFF 0%, #F3F5FC 70%, #EEF1FB 100%)",
       }}
     >
-      {/* Background decorations */}
+      {/* Dynamic Mesh Gradient Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+        <MeshGradientBg
+          colors={["#5B43D6", "#2B7DDC", "#28B7C7", "#7928ca"]}
+          blur={100}
+          speed={0.6}
+          background="transparent"
+          className="!w-full !h-full"
+        />
+      </div>
+
+      {/* Additional subtle radial background accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="absolute top-0 right-0 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] lg:w-[850px] lg:h-[850px] rounded-full opacity-[0.06]"
+          className="absolute top-0 right-0 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] lg:w-[850px] lg:h-[850px] rounded-full opacity-[0.05]"
           style={{
             background: "radial-gradient(circle, #5B43D6 0%, #2B7DDC 60%, transparent 80%)",
             transform: "translate(15%, -15%)",
-          }}
-        />
-        <div
-          className="absolute -bottom-40 -left-40 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] rounded-full opacity-[0.05]"
-          style={{
-            background: "radial-gradient(circle, #28B7C7 0%, transparent 70%)",
           }}
         />
       </div>
